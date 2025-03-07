@@ -1,3 +1,4 @@
+import Banner from './components/Banner';
 import { GlobalContainer, GlobalStyle } from './styles/styles';
 
 function App() {
@@ -5,9 +6,7 @@ function App() {
     <>
       <GlobalStyle />
       <GlobalContainer>
-        <div>
-          <h1>Hello World!</h1>
-        </div>
+        <Banner />
       </GlobalContainer>
     </>
   );
