@@ -1,12 +1,14 @@
-import { GlobalStyle } from './styles/styles';
+import { GlobalContainer, GlobalStyle } from './styles/styles';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <div>
-        <h1>Hello World!</h1>
-      </div>
+      <GlobalContainer>
+        <div>
+          <h1>Hello World!</h1>
+        </div>
+      </GlobalContainer>
     </>
   );
 }
