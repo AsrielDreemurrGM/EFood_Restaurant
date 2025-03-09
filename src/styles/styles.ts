@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-const colors = {
+export const colors = {
   white: '#FFFFFF',
   warmWhite: '#FFF8F2',
   warmPink: '#E66767'
@@ -17,11 +17,11 @@ export const GlobalStyle = createGlobalStyle`
 body {
   background-color: ${colors.warmWhite};
   color: ${colors.warmPink};
-}
-`;
 
-export const GlobalContainer = styled.div`
-  max-width: 1024px;
-  width: 100%;
-  margin: 0 auto;
+  .globalContainer {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
 `;

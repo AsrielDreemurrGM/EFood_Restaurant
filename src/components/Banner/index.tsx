@@ -5,8 +5,10 @@ import { Image, Title } from './styles';
 
 const Banner = () => (
   <Image style={{ backgroundImage: `url(${hero})` }}>
-    <img src={logo} alt="" />
-    <Title>Viva experiências gastronômicas no conforto da sua casa</Title>
+    <div className="globalContainer">
+      <img src={logo} alt="Logo" />
+      <Title>Viva experiências gastronômicas no conforto da sua casa</Title>
+    </div>
   </Image>
 );
 

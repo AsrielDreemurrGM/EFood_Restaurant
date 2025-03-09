@@ -1,13 +1,16 @@
+import { GlobalStyle } from './styles/styles';
+
 import Banner from './components/Banner';
-import { GlobalContainer, GlobalStyle } from './styles/styles';
+import Products from './components/Product';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <GlobalContainer>
-        <Banner />
-      </GlobalContainer>
+      <Banner />
+      <div className="globalContainer">
+        <Products />
+      </div>
     </>
   );
 }
