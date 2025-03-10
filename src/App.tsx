@@ -1,8 +1,9 @@
 import { GlobalStyle } from './styles/styles';
 
 import Banner from './components/Banner';
-import Products from './components/Product';
 import Footer from './components/Footer';
+
+import ProductsList from './Containers/ProductsList';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <GlobalStyle />
       <Banner />
       <div className="globalContainer">
-        <Products />
+        <ProductsList />
       </div>
       <Footer />
     </>

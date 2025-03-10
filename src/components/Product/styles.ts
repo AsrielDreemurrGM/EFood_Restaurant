@@ -1,16 +1,7 @@
 import styled from 'styled-components';
 import { colors } from '../../styles/styles';
 
-export const Container = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding-top: 80px;
-  padding-bottom: 120px;
-  gap: 80px;
-  row-gap: 48px;
-`;
-
-export const Product = styled.div`
+export const ProductWrapper = styled.div`
   background-color: ${colors.white};
   position: relative;
 `;
