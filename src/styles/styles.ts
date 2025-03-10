@@ -4,7 +4,9 @@ export const colors = {
   white: '#FFFFFF',
   warmWhite: '#FFF8F2',
   warmPink: '#E66767',
-  warmBeige: '#FFEBD9'
+  warmBeige: '#FFEBD9',
+  salmonRed: '#EC7575',
+  lightApricot: '#FDE4C1'
 };
 
 export const GlobalStyle = createGlobalStyle`

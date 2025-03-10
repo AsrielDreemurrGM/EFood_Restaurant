@@ -16,7 +16,8 @@ export const ButtonStyle = styled.button<Props>`
   background-color: ${(props) =>
     props.buttonType === 'knowMore' ? colors.warmPink : colors.warmBeige};
 
-  :hover {
-    opacity: 0.5;
+  &:hover {
+    background-color: ${(props) =>
+      props.buttonType === 'knowMore' ? colors.salmonRed : colors.lightApricot};
   }
 `;

@@ -18,7 +18,11 @@ const Button = ({ text, buttonType = 'knowMore' }: Props) => {
     return text;
   }
   defineText();
-  return <ButtonStyle buttonType={buttonType}>{buttonText}</ButtonStyle>;
+  return (
+    <ButtonStyle type="button" buttonType={buttonType}>
+      {buttonText}
+    </ButtonStyle>
+  );
 };
 
 export default Button;
