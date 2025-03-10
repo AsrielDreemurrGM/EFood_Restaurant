@@ -2,6 +2,7 @@ import { GlobalStyle } from './styles/styles';
 
 import Banner from './components/Banner';
 import Products from './components/Product';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <div className="globalContainer">
         <Products />
       </div>
+      <Footer />
     </>
   );
 }
