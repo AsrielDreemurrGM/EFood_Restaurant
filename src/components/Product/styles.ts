@@ -37,13 +37,31 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.p`
-  padding-top: 8px;
   font-size: 18px;
   font-weight: 700;
 `;
+
+export const Rating = styled(Title)``;
 
 export const Description = styled.p`
   padding: 16px 0;
   font-size: 14px;
   font-weight: 400;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  padding-top: 8px;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const RatingWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+
+  svg {
+    width: 21px;
+    height: 20px;
+  }
 `;

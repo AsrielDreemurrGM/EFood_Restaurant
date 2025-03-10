@@ -5,11 +5,16 @@ import {
   Title,
   Description,
   Content,
-  TagWrapper
+  TagWrapper,
+  TitleWrapper,
+  RatingWrapper,
+  Rating
 } from './styles';
 
 import sushi from '../../assets/images/sushi.png';
 import pasta from '../../assets/images/pasta.png';
+import { ReactComponent as StarIcon } from '../../assets/images/star.svg';
+
 import Tag from '../Tag';
 import Button from '../Button';
 
@@ -22,7 +27,13 @@ const Products = () => (
         <Tag text="Japonesa" />
       </TagWrapper>
       <Content>
-        <Title>Hioki Sushi</Title>
+        <TitleWrapper>
+          <Title>Hioki Sushi</Title>
+          <RatingWrapper>
+            <Rating>4.9</Rating>
+            <StarIcon />
+          </RatingWrapper>
+        </TitleWrapper>
         <Description>
           Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis
           frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega
@@ -42,7 +53,13 @@ const Products = () => (
         <Tag text="Italiana" />
       </TagWrapper>
       <Content>
-        <Title>La Dolce Vita Trattoria</Title>
+        <TitleWrapper>
+          <Title>La Dolce Vita Trattoria</Title>
+          <RatingWrapper>
+            <Rating>4.6</Rating>
+            <StarIcon />
+          </RatingWrapper>
+        </TitleWrapper>
         <Description>
           A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você!
           Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis,
@@ -62,7 +79,13 @@ const Products = () => (
         <Tag text="Italiana" />
       </TagWrapper>
       <Content>
-        <Title>La Dolce Vita Trattoria</Title>
+        <TitleWrapper>
+          <Title>La Dolce Vita Trattoria</Title>
+          <RatingWrapper>
+            <Rating>4.6</Rating>
+            <StarIcon />
+          </RatingWrapper>
+        </TitleWrapper>
         <Description>
           A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você!
           Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis,
@@ -82,7 +105,13 @@ const Products = () => (
         <Tag text="Italiana" />
       </TagWrapper>
       <Content>
-        <Title>La Dolce Vita Trattoria</Title>
+        <TitleWrapper>
+          <Title>La Dolce Vita Trattoria</Title>
+          <RatingWrapper>
+            <Rating>4.6</Rating>
+            <StarIcon />
+          </RatingWrapper>
+        </TitleWrapper>
         <Description>
           A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você!
           Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis,
@@ -102,7 +131,13 @@ const Products = () => (
         <Tag text="Italiana" />
       </TagWrapper>
       <Content>
-        <Title>La Dolce Vita Trattoria</Title>
+        <TitleWrapper>
+          <Title>La Dolce Vita Trattoria</Title>
+          <RatingWrapper>
+            <Rating>4.6</Rating>
+            <StarIcon />
+          </RatingWrapper>
+        </TitleWrapper>
         <Description>
           A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você!
           Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis,
@@ -122,7 +157,13 @@ const Products = () => (
         <Tag text="Italiana" />
       </TagWrapper>
       <Content>
-        <Title>La Dolce Vita Trattoria</Title>
+        <TitleWrapper>
+          <Title>La Dolce Vita Trattoria</Title>
+          <RatingWrapper>
+            <Rating>4.6</Rating>
+            <StarIcon />
+          </RatingWrapper>
+        </TitleWrapper>
         <Description>
           A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você!
           Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis,
