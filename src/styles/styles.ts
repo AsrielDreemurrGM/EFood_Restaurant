@@ -3,7 +3,8 @@ import { createGlobalStyle } from 'styled-components';
 export const colors = {
   white: '#FFFFFF',
   warmWhite: '#FFF8F2',
-  warmPink: '#E66767'
+  warmPink: '#E66767',
+  warmBeige: '#FFEBD9'
 };
 
 export const GlobalStyle = createGlobalStyle`

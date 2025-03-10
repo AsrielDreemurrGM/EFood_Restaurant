@@ -12,6 +12,15 @@ export const Container = styled.section`
 
 export const Product = styled.div`
   background-color: ${colors.white};
+  position: relative;
+`;
+
+export const TagWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
 `;
 
 export const Image = styled.img`
@@ -34,7 +43,7 @@ export const Title = styled.p`
 `;
 
 export const Description = styled.p`
-  padding-top: 16px;
+  padding: 16px 0;
   font-size: 14px;
   font-weight: 400;
 `;
