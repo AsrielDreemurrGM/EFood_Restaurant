@@ -1,19 +1,18 @@
+import { BrowserRouter } from 'react-router-dom';
+
 import { GlobalStyle } from './styles/styles';
 
-import Banner from './components/Banner';
-import Footer from './components/Footer';
-
-import ProductsList from './Containers/ProductsList';
+import Home from './Pages/Home';
+import AllRoutes from './routes';
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <Banner />
-      <div className="globalContainer">
-        <ProductsList />
-      </div>
-      <Footer />
+      <BrowserRouter>
+        <GlobalStyle />
+        <AllRoutes />
+      </BrowserRouter>
+      <Home />
     </>
   );
 }
