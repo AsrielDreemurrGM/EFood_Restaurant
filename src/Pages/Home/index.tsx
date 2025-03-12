@@ -1,5 +1,4 @@
 import Banner from '../../components/Banner';
-import Footer from '../../components/Footer';
 import ProductsList from '../../Containers/ProductsList';
 
 const Home = () => (
@@ -8,7 +7,6 @@ const Home = () => (
     <div className="globalContainer">
       <ProductsList />
     </div>
-    <Footer />
   </>
 );
 
