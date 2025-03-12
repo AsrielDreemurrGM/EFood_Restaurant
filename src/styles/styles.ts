@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const colors = {
   white: '#FFFFFF',
@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   margin: 0;
   font-family: Roboto, sans-serif;
   text-decoration: none;
+  list-style: none;
 }
 
 body {
@@ -28,4 +29,13 @@ body {
     margin: 0 auto;
   }
 }
+`;
+
+export const BackgroundImage = styled.div`
+  display: block;
+  padding-top: 64px;
+  width: 100%;
+  height: 384px;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;

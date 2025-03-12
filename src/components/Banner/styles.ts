@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 
-export const Image = styled.div`
-  display: block;
-  padding-top: 64px;
-  width: 100%;
-  height: 384px;
-  background-repeat: no-repeat;
-  background-size: cover;
+import { BackgroundImage } from '../../styles/styles';
 
+export const BannerBackground = styled(BackgroundImage)`
   div {
     justify-items: center;
   }
