@@ -56,7 +56,7 @@ const Product = ({
           </RatingWrapper>
         </TitleWrapper>
         <Description>{productDescription}</Description>
-        <Button buttonType={typeOfButton} />
+        <Button to="/profile" buttonType={typeOfButton} />
       </Content>
     </ProductWrapper>
   </>
