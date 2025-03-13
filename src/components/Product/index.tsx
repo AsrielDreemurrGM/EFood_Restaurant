@@ -22,7 +22,7 @@ type Props = {
   productDescription: string;
   productName: string;
   rating: number;
-  typeOfButton: 'knowMore' | 'addToCart';
+  whichPage: 'home' | 'profile';
 };
 
 const Product = ({
@@ -32,7 +32,7 @@ const Product = ({
   productDescription,
   productName,
   rating,
-  typeOfButton
+  whichPage
 }: Props) => (
   <>
     <ProductWrapper>
@@ -56,7 +56,7 @@ const Product = ({
           </RatingWrapper>
         </TitleWrapper>
         <Description>{productDescription}</Description>
-        <Button to="/profile" buttonType={typeOfButton} />
+        <Button to="/profile" whichPage={whichPage} />
       </Content>
     </ProductWrapper>
   </>

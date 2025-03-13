@@ -5,7 +5,7 @@ class ProductDetails {
   productDescription: string;
   productName: string;
   rating: number;
-  typeOfButton: 'knowMore' | 'addToCart';
+  whichPage: 'home' | 'profile';
 
   constructor(
     dishCulture: string,
@@ -14,7 +14,7 @@ class ProductDetails {
     productDescription: string,
     productName: string,
     rating: number,
-    typeOfButton: 'knowMore' | 'addToCart'
+    whichPage: 'home' | 'profile'
   ) {
     this.dishCulture = dishCulture;
     this.imageSrc = imageSrc;
@@ -22,7 +22,7 @@ class ProductDetails {
     this.productDescription = productDescription;
     this.productName = productName;
     this.rating = rating;
-    this.typeOfButton = typeOfButton;
+    this.whichPage = whichPage;
   }
 }
 

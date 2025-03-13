@@ -2,17 +2,16 @@ import { Link } from 'react-router-dom';
 import { ButtonStyle } from './styles';
 
 export type Props = {
-  buttonType: 'knowMore' | 'addToCart';
+  whichPage: 'home' | 'profile';
   text?: string;
   to: string;
 };
 
-const Button = ({ text, buttonType, to }: Props) => {
+const Button = ({ text, whichPage, to }: Props) => {
   const buttonText =
-    text ??
-    (buttonType === 'knowMore' ? 'Saiba mais' : 'Adicionar ao carrinho');
+    text ?? (whichPage === 'home' ? 'Saiba mais' : 'Adicionar ao carrinho');
   function defineText() {
-    if (buttonType === 'knowMore') {
+    if (whichPage === 'home') {
       text = 'Saiba mais';
       return text;
     }
@@ -21,7 +20,7 @@ const Button = ({ text, buttonType, to }: Props) => {
   }
   defineText();
   return (
-    <ButtonStyle as={Link} to={to} buttonType={buttonType}>
+    <ButtonStyle as={Link} to={to} whichPage={whichPage}>
       {buttonText}
     </ButtonStyle>
   );

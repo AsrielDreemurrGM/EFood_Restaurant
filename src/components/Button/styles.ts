@@ -3,21 +3,21 @@ import { colors } from '../../styles/styles';
 import { Props } from '.';
 
 export const ButtonStyle = styled.button<Props>`
-  max-width: ${(props) => (props.buttonType === 'knowMore' ? '82px' : '304px')};
+  max-width: ${(props) => (props.whichPage === 'home' ? '82px' : '304px')};
   width: 100%;
   height: 24px;
   padding: 4px 6px;
   color: ${(props) =>
-    props.buttonType === 'knowMore' ? colors.white : colors.warmPink};
+    props.whichPage === 'home' ? colors.white : colors.warmPink};
   font-size: 14px;
   font-weight: 700;
   border: none;
   cursor: pointer;
   background-color: ${(props) =>
-    props.buttonType === 'knowMore' ? colors.warmPink : colors.warmBeige};
+    props.whichPage === 'home' ? colors.warmPink : colors.warmBeige};
 
   &:hover {
     background-color: ${(props) =>
-      props.buttonType === 'knowMore' ? colors.salmonRed : colors.lightApricot};
+      props.whichPage === 'home' ? colors.salmonRed : colors.lightApricot};
   }
 `;
