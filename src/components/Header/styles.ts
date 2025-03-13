@@ -3,6 +3,10 @@ import { BackgroundImage } from '../../styles/styles';
 
 export const HeaderContainer = styled(BackgroundImage)`
   height: 186px;
+
+  a {
+    margin-left: 80px;
+  }
 `;
 
 export const NavList = styled.ul`
