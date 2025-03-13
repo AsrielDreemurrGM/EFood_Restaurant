@@ -67,7 +67,7 @@ const Home = () => (
   <>
     <Banner />
     <div className="globalContainer">
-      <ProductsList />
+      <ProductsList whichPage="home" />
     </div>
   </>
 );

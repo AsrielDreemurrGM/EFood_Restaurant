@@ -16,13 +16,13 @@ import Tag from '../Tag';
 import Button from '../Button';
 
 type Props = {
-  dishCulture: string;
   imageSrc: string;
-  isWeekBest: 'yes' | 'no';
   productDescription: string;
   productName: string;
-  rating: number;
   whichPage: 'home' | 'profile';
+  dishCulture?: string;
+  isWeekBest?: 'yes' | 'no';
+  rating?: number;
 };
 
 const Product = ({
@@ -34,9 +34,9 @@ const Product = ({
   rating,
   whichPage
 }: Props) => (
-  <>
-    <ProductWrapper>
-      <Image src={imageSrc} alt={imageSrc} title={imageSrc} />
+  <ProductWrapper whichPage={whichPage}>
+    <Image src={imageSrc} alt={productName} title={productName} />
+    {whichPage === 'home' && dishCulture && (
       <TagWrapper>
         {isWeekBest === 'yes' ? (
           <>
@@ -47,19 +47,21 @@ const Product = ({
           <Tag text={dishCulture} />
         )}
       </TagWrapper>
-      <Content>
-        <TitleWrapper>
-          <Title>{productName}</Title>
+    )}
+    <Content whichPage={whichPage}>
+      <TitleWrapper>
+        <Title whichPage={whichPage}>{productName}</Title>
+        {whichPage === 'home' && typeof rating === 'number' && (
           <RatingWrapper>
-            <Rating>{rating}</Rating>
+            <Rating whichPage={whichPage}>{rating}</Rating>
             <StarIcon />
           </RatingWrapper>
-        </TitleWrapper>
-        <Description>{productDescription}</Description>
-        <Button to="/profile" whichPage={whichPage} />
-      </Content>
-    </ProductWrapper>
-  </>
+        )}
+      </TitleWrapper>
+      <Description whichPage={whichPage}>{productDescription}</Description>
+      <Button to="/profile" whichPage={whichPage} />
+    </Content>
+  </ProductWrapper>
 );
 
 export default Product;
