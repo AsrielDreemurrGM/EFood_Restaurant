@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 import { BackgroundImage, colors } from '../../styles/styles';
 
-export const HeroImage = styled(BackgroundImage)``;
+export const HeroImage = styled(BackgroundImage)`
+  padding-top: 24px;
+  height: 280px;
+`;
 
 export const Wrapper = styled.div`
-  padding-top: 24px;
   padding-bottom: 32px;
   display: flex;
   flex-direction: column;
