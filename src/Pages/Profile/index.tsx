@@ -1,9 +1,13 @@
-import Header from '../../components/Header';
-import Hero from '../../components/Hero';
-import ProductsList from '../../Containers/ProductsList';
 import ProductDetails from '../../models/ProductDetails';
 
+import Header from '../../components/Header';
+import Hero from '../../components/Hero';
+
+import ProductsList from '../../Containers/ProductsList';
+import Modal from '../../components/Modal';
+
 import pizza from '../../assets/images/pizza.png';
+import { useState } from 'react';
 
 export const profileProducts: Omit<
   ProductDetails,
@@ -53,14 +57,24 @@ export const profileProducts: Omit<
   }
 ];
 
-const Profile = () => (
-  <>
-    <Header />
-    <Hero />
-    <div className="globalContainer">
-      <ProductsList whichPage="profile" />
-    </div>
-  </>
-);
+const Profile = () => {
+  const [modal, setModal] = useState<{ isVisible: boolean }>({
+    isVisible: false
+  });
+
+  const toggleModal = () =>
+    setModal((prev) => ({ isVisible: !prev.isVisible }));
+
+  return (
+    <>
+      <Header />
+      <Hero />
+      <div className="globalContainer">
+        <ProductsList whichPage="profile" onProductClick={toggleModal} />
+      </div>
+      <Modal onClose={toggleModal} isVisible={modal.isVisible} />
+    </>
+  );
+};
 
 export default Profile;

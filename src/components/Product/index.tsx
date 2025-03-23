@@ -16,6 +16,7 @@ import Tag from '../Tag';
 import Button from '../Button';
 
 type Props = {
+  buttonText: string;
   imageSrc: string;
   productDescription: string;
   productName: string;
@@ -23,16 +24,19 @@ type Props = {
   dishCulture?: string;
   isWeekBest?: 'yes' | 'no';
   rating?: number;
+  onClick?: () => void;
 };
 
 const Product = ({
+  buttonText,
   dishCulture,
   imageSrc,
   isWeekBest,
   productDescription,
   productName,
   rating,
-  whichPage
+  whichPage,
+  onClick
 }: Props) => (
   <ProductWrapper whichPage={whichPage}>
     <Image src={imageSrc} alt={productName} title={productName} />
@@ -59,7 +63,12 @@ const Product = ({
         )}
       </TitleWrapper>
       <Description whichPage={whichPage}>{productDescription}</Description>
-      <Button to="/profile" whichPage={whichPage} />
+      <Button
+        onClick={onClick}
+        text={buttonText}
+        to="/profile"
+        whichPage={whichPage}
+      ></Button>
     </Content>
   </ProductWrapper>
 );

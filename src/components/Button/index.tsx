@@ -5,25 +5,19 @@ export type Props = {
   whichPage: 'home' | 'profile';
   text?: string;
   to: string;
+  onClick?: () => void;
 };
 
-const Button = ({ text, whichPage, to }: Props) => {
-  const buttonText =
-    text ?? (whichPage === 'home' ? 'Saiba mais' : 'Adicionar ao carrinho');
-  function defineText() {
-    if (whichPage === 'home') {
-      text = 'Saiba mais';
-      return text;
-    }
-    text = 'Adicionar ao carrinho';
-    return text;
-  }
-  defineText();
-  return (
-    <ButtonStyle as={Link} to={to} whichPage={whichPage}>
-      {buttonText}
-    </ButtonStyle>
-  );
-};
+const Button = ({ text, whichPage, to, onClick }: Props) => (
+  <ButtonStyle
+    onClick={onClick}
+    text={text}
+    as={Link}
+    to={to}
+    whichPage={whichPage}
+  >
+    {text}
+  </ButtonStyle>
+);
 
 export default Button;
