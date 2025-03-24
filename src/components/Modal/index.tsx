@@ -12,34 +12,36 @@ import {
 import Button from '../Button';
 
 import closeIcon from '../../assets/images/close-icon.png';
-import pizza from '../../assets/images/pizza.png';
+
+import { ProductDetails } from '../../Pages/Home';
+
+import { formatPrice } from '../../utils/utils';
 
 type Props = {
   isVisible: boolean;
   onClose: () => void;
+  product: ProductDetails | null;
 };
 
-const Modal = ({ isVisible, onClose }: Props) => (
+const Modal = ({ isVisible, onClose, product }: Props) => (
   <ModalContainer className={isVisible ? 'active' : ''}>
     <ModalContent className="globalContainer">
       <CloseIcon onClick={onClose} src={closeIcon} />
-      <ProductImage src={pizza} alt="" />
+      <ProductImage
+        src={product?.capa}
+        alt={product?.titulo}
+        title={product?.titulo}
+      />
       <ModalWrapper>
-        <Title>Pizza Marguerita</Title>
-        <Description>
-          A pizza Margherita é uma pizza clássica da culinária italiana,
-          reconhecida por sua simplicidade e sabor inigualável. Ela é feita com
-          uma base de massa fina e crocante, coberta com molho de tomate fresco,
-          queijo mussarela de alta qualidade, manjericão fresco e azeite de
-          oliva extra-virgem. A combinação de sabores é perfeita, com o molho de
-          tomate suculento e ligeiramente ácido, o queijo derretido e cremoso e
-          as folhas de manjericão frescas, que adicionam um toque de sabor
-          herbáceo. É uma pizza simples, mas deliciosa, que agrada a todos os
-          paladares e é uma ótima opção para qualquer ocasião.
-        </Description>
-        <Servings>Serve: de 2 a 3 pessoas</Servings>
+        <Title>{product?.titulo}</Title>
+        <Description>{product?.descricao}</Description>
+        <Servings>
+          Serve: de {product?.cardapio?.[0]?.porcao || 'Porção não informada'}
+        </Servings>
         <Button
-          text={`Adicionar ao carrinho - R$ 60,90`}
+          text={`Adicionar ao carrinho - ${formatPrice(
+            product?.cardapio?.[0]?.preco
+          )}`}
           to="/profile"
           whichPage="profile"
         ></Button>

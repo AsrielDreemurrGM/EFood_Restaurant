@@ -1,75 +1,60 @@
+import { useEffect, useState } from 'react';
+
 import Banner from '../../components/Banner';
 import ProductsList from '../../Containers/ProductsList';
 
-import ProductDetails from '../../models/ProductDetails';
+export type ProductDetails = {
+  id: number;
+  titulo: string;
+  destacado: boolean;
+  tipo: string;
+  avaliacao: number;
+  descricao: string;
+  capa: string;
+  cardapio: {
+    foto: string;
+    preco: number;
+    id: number;
+    nome: string;
+    descricao: string;
+    porcao: string;
+  }[];
+};
 
-import sushi from '../../assets/images/sushi.png';
-import pasta from '../../assets/images/pasta.png';
+const Home = () => {
+  const [products, setProducts] = useState<ProductDetails[]>([]);
 
-export const homeProducts: ProductDetails[] = [
-  new ProductDetails(
-    'Japonesa',
-    sushi,
-    'yes',
-    'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
-    'Hioki Sushi',
-    4.9,
-    'home'
-  ),
-  new ProductDetails(
-    'Italiana',
-    pasta,
-    'no',
-    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    'La Dolce Vita Trattoria',
-    4.6,
-    'home'
-  ),
-  new ProductDetails(
-    'Italiana',
-    pasta,
-    'no',
-    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    'La Dolce Vita Trattoria',
-    4.6,
-    'home'
-  ),
-  new ProductDetails(
-    'Italiana',
-    pasta,
-    'no',
-    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    'La Dolce Vita Trattoria',
-    4.6,
-    'home'
-  ),
-  new ProductDetails(
-    'Italiana',
-    pasta,
-    'no',
-    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    'La Dolce Vita Trattoria',
-    4.6,
-    'home'
-  ),
-  new ProductDetails(
-    'Italiana',
-    pasta,
-    'no',
-    'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    'La Dolce Vita Trattoria',
-    4.6,
-    'home'
-  )
-];
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch(
+        'https://fake-api-tau.vercel.app/api/efood/restaurantes'
+      );
+      if (!response.ok) {
+        throw new Error('Error fetching products');
+      }
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
 
-const Home = () => (
-  <>
-    <Banner />
-    <div className="globalContainer">
-      <ProductsList whichPage="home" />
-    </div>
-  </>
-);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  return (
+    <>
+      <Banner />
+      <div className="globalContainer">
+        {!products.length ? (
+          <h2>Carregando...</h2>
+        ) : (
+          <ProductsList whichPage="home" products={products} />
+        )}
+      </div>
+    </>
+  );
+};
 
 export default Home;

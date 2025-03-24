@@ -7,6 +7,7 @@ type Props = {
 
 export const ProductWrapper = styled.div<Props>`
   position: relative;
+  border-radius: 8px;
 
   padding: ${(props) => (props.whichPage === 'home' ? '0' : '8px')};
 
@@ -27,10 +28,11 @@ export const TagWrapper = styled.div`
   right: 16px;
 `;
 
-export const Image = styled.img`
+export const Image = styled.img<Props>`
   display: block;
   width: 100%;
-  height: auto;
+  height: 217px;
+  border-radius: ${(props) => (props.whichPage === 'home' ? `0` : '8px')};
 `;
 
 export const Content = styled.div<Props>`
@@ -40,6 +42,10 @@ export const Content = styled.div<Props>`
 
   border-width: 0px 1px 1px 1px;
   border-color: ${colors.warmPink};
+  min-height: ${(props) => (props.whichPage === 'home' ? '205px' : '243px')};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const Title = styled.p<Props>`
@@ -54,6 +60,7 @@ export const Description = styled.p<Props>`
   padding: ${(props) => (props.whichPage === 'home' ? `16px 0` : '8px 0')};
   font-size: 14px;
   font-weight: 400;
+  line-height: 22px;
 `;
 
 export const TitleWrapper = styled.div`

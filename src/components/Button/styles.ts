@@ -3,7 +3,6 @@ import { colors } from '../../styles/styles';
 import { Props } from '.';
 
 export const ButtonStyle = styled.button<Props>`
-  display: block;
   text-align: center;
   width: 100%;
   height: 24px;

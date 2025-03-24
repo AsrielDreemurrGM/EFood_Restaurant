@@ -22,7 +22,7 @@ type Props = {
   productName: string;
   whichPage: 'home' | 'profile';
   dishCulture?: string;
-  isWeekBest?: 'yes' | 'no';
+  isWeekBest?: boolean;
   rating?: number;
   onClick?: () => void;
 };
@@ -39,10 +39,15 @@ const Product = ({
   onClick
 }: Props) => (
   <ProductWrapper whichPage={whichPage}>
-    <Image src={imageSrc} alt={productName} title={productName} />
+    <Image
+      whichPage={whichPage}
+      src={imageSrc}
+      alt={productName}
+      title={productName}
+    />
     {whichPage === 'home' && dishCulture && (
       <TagWrapper>
-        {isWeekBest === 'yes' ? (
+        {isWeekBest ? (
           <>
             <Tag text="Destaque da semana" />
             <Tag text={dishCulture} />
