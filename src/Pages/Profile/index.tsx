@@ -7,7 +7,6 @@ import Hero from '../../components/Hero';
 import ProductsList from '../../Containers/ProductsList';
 import Modal from '../../components/Modal';
 
-import { getRandomProduct } from '../../utils/utils';
 import { useParams } from 'react-router-dom';
 
 const Profile = () => {
@@ -18,9 +17,11 @@ const Profile = () => {
   const [selectedProduct, setSelectedProduct] =
     useState<ProfileProducts | null>(null);
 
-  const [randomProduct, setRandomProduct] = useState<ProfileProducts | null>(
-    null
-  );
+  const [restaurant, setRestaurant] = useState<{
+    nome: string;
+    tipo: string;
+    capa: string;
+  } | null>(null);
 
   const [modal, setModal] = useState<{ isVisible: boolean }>({
     isVisible: false
@@ -46,31 +47,35 @@ const Profile = () => {
       }
       const data = await response.json();
 
-      const allMenus = data.flatMap(
-        (restaurant: {
-          id: number;
-          tipo: string;
-          cardapio: ProfileProducts[];
-        }) =>
-          restaurant.cardapio.map((product) => ({
-            ...product,
-            tipo: restaurant.tipo,
-            restaurantId: restaurant.id
-          }))
+      const selectedRestaurant = data.find(
+        (restaurant: { id: number }) =>
+          restaurant.id === parseInt(restaurantId || '', 10)
       );
 
-      const filteredProducts = allMenus.filter(
-        (product: ProfileProducts) =>
-          product.restaurantId === parseInt(restaurantId || '', 10)
+      if (!selectedRestaurant) {
+        setProducts([]);
+        setRestaurant(null);
+        return;
+      }
+
+      setRestaurant({
+        nome: selectedRestaurant.titulo,
+        tipo: selectedRestaurant.tipo,
+        capa: selectedRestaurant.capa
+      });
+
+      const filteredProducts = selectedRestaurant.cardapio.map(
+        (product: ProfileProducts) => ({
+          ...product,
+          tipo: selectedRestaurant.tipo,
+          restaurantId: selectedRestaurant.id
+        })
       );
 
       setProducts(filteredProducts);
       setSelectedProduct(filteredProducts[0] || null);
-
-      const randomProduct = getRandomProduct(filteredProducts);
-      setRandomProduct(randomProduct);
     } catch (error) {
-      console.error('Error fetchin products:', error);
+      console.error('Error fetching products:', error);
     }
   }, [restaurantId]);
 
@@ -81,7 +86,7 @@ const Profile = () => {
   return (
     <>
       <Header />
-      <Hero product={randomProduct} />
+      <Hero restaurant={restaurant} />
       <div className="globalContainer">
         {!products.length ? (
           <h2>Carregando...</h2>
