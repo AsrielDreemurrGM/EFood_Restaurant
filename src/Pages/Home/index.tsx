@@ -3,26 +3,10 @@ import { useEffect, useState } from 'react';
 import Banner from '../../components/Banner';
 import ProductsList from '../../Containers/ProductsList';
 
-export type ProductDetails = {
-  id: number;
-  titulo: string;
-  destacado: boolean;
-  tipo: string;
-  avaliacao: number;
-  descricao: string;
-  capa: string;
-  cardapio: {
-    foto: string;
-    preco: number;
-    id: number;
-    nome: string;
-    descricao: string;
-    porcao: string;
-  }[];
-};
+import { HomeProducts } from '../../types/products';
 
 const Home = () => {
-  const [products, setProducts] = useState<ProductDetails[]>([]);
+  const [products, setProducts] = useState<HomeProducts[]>([]);
 
   const fetchProducts = async () => {
     try {

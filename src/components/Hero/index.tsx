@@ -1,20 +1,20 @@
-import { ProductDetails } from '../../Pages/Home';
+import { ProfileProducts } from '../../types/products';
 
 import { Culture, HeroImage, DishName, Wrapper } from './styles';
 
 import { captalizeFirstLetter } from '../../utils/utils';
 
 type Props = {
-  product: ProductDetails | null;
+  product: ProfileProducts | null;
 };
 
 const Hero = ({ product }: Props) => {
   return (
-    <HeroImage style={{ backgroundImage: `url(${product?.capa})` }}>
+    <HeroImage style={{ backgroundImage: `url(${product?.foto})` }}>
       <div className="globalContainer">
         <Wrapper>
           <Culture>{captalizeFirstLetter(product?.tipo || '')}</Culture>
-          <DishName>{product?.titulo}</DishName>
+          <DishName>{product?.nome}</DishName>
         </Wrapper>
       </div>
     </HeroImage>

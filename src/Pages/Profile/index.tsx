@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { ProductDetails } from '../Home';
+import { HomeProducts, ProfileProducts } from '../../types/products';
 
 import Header from '../../components/Header';
 import Hero from '../../components/Hero';
@@ -10,13 +10,12 @@ import Modal from '../../components/Modal';
 import { getRandomProduct } from '../../utils/utils';
 
 const Profile = () => {
-  const [products, setProducts] = useState<ProductDetails[]>([]);
+  const [products, setProducts] = useState<ProfileProducts[]>([]);
 
-  const [selectedProduct, setSelectedProduct] = useState<ProductDetails | null>(
-    null
-  );
+  const [selectedProduct, setSelectedProduct] =
+    useState<ProfileProducts | null>(null);
 
-  const [randomProduct, setRandomProduct] = useState<ProductDetails | null>(
+  const [randomProduct, setRandomProduct] = useState<ProfileProducts | null>(
     null
   );
 
@@ -24,7 +23,7 @@ const Profile = () => {
     isVisible: false
   });
 
-  const openModal = (product: ProductDetails) => {
+  const openModal = (product: ProfileProducts) => {
     setSelectedProduct(product);
     setModal({ isVisible: true });
   };
@@ -43,10 +42,19 @@ const Profile = () => {
         throw new Error('Error fetching products');
       }
       const data = await response.json();
-      setProducts(data);
-      setSelectedProduct(data);
 
-      const randomProduct = getRandomProduct(data);
+      const allMenus = data.flatMap(
+        (restaurant: { tipo: string; cardapio: ProfileProducts[] }) =>
+          restaurant.cardapio.map((product) => ({
+            ...product,
+            tipo: restaurant.tipo
+          }))
+      );
+
+      setProducts(allMenus);
+      setSelectedProduct(allMenus[0] || null);
+
+      const randomProduct = getRandomProduct(allMenus);
       setRandomProduct(randomProduct);
     } catch (error) {
       console.error('Error fetchin products:', error);
@@ -68,7 +76,9 @@ const Profile = () => {
           <ProductsList
             products={products}
             whichPage="profile"
-            onProductClick={openModal}
+            onProductClick={(product: ProfileProducts | HomeProducts) =>
+              openModal(product as ProfileProducts)
+            }
           />
         )}
       </div>

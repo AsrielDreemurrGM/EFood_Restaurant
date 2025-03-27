@@ -13,14 +13,14 @@ import Button from '../Button';
 
 import closeIcon from '../../assets/images/close-icon.png';
 
-import { ProductDetails } from '../../Pages/Home';
+import { ProfileProducts } from '../../types/products';
 
 import { formatPrice } from '../../utils/utils';
 
 type Props = {
   isVisible: boolean;
   onClose: () => void;
-  product: ProductDetails | null;
+  product: ProfileProducts | null;
 };
 
 const Modal = ({ isVisible, onClose, product }: Props) => (
@@ -28,20 +28,18 @@ const Modal = ({ isVisible, onClose, product }: Props) => (
     <ModalContent className="globalContainer">
       <CloseIcon onClick={onClose} src={closeIcon} />
       <ProductImage
-        src={product?.capa}
-        alt={product?.titulo}
-        title={product?.titulo}
+        src={product?.foto}
+        alt={product?.nome}
+        title={product?.nome}
       />
       <ModalWrapper>
-        <Title>{product?.titulo}</Title>
+        <Title>{product?.nome}</Title>
         <Description>{product?.descricao}</Description>
         <Servings>
-          Serve: de {product?.cardapio?.[0]?.porcao || 'Porção não informada'}
+          Serve: de {product?.porcao || 'Porção não informada'}
         </Servings>
         <Button
-          text={`Adicionar ao carrinho - ${formatPrice(
-            product?.cardapio?.[0]?.preco
-          )}`}
+          text={`Adicionar ao carrinho - ${formatPrice(product?.preco)}`}
           to="/profile"
           whichPage="profile"
         ></Button>

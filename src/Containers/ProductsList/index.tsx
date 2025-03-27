@@ -1,13 +1,15 @@
 import { Container } from './styles';
 
 import Product from '../../components/Product';
-import { ProductDetails } from '../../Pages/Home';
+
+import { HomeProducts, ProfileProducts } from '../../types/products';
+
 import { captalizeFirstLetter } from '../../utils/utils';
 
 type Props = {
   whichPage: 'home' | 'profile';
-  onProductClick?: (product: ProductDetails) => void;
-  products: ProductDetails[];
+  onProductClick?: (product: HomeProducts | ProfileProducts) => void;
+  products: HomeProducts[] | ProfileProducts[];
 };
 
 export const ProductsList = ({
@@ -31,12 +33,34 @@ export const ProductsList = ({
         <Product
           whichPage={whichPage}
           key={product.id}
-          imageSrc={product.capa}
-          productName={product.titulo}
-          productDescription={product.descricao}
-          dishCulture={captalizeFirstLetter(product.tipo)}
-          isWeekBest={product.destacado}
-          rating={product.avaliacao}
+          imageSrc={
+            whichPage === 'home'
+              ? (product as HomeProducts).capa
+              : (product as ProfileProducts).foto
+          }
+          productName={
+            whichPage === 'home'
+              ? (product as HomeProducts).titulo
+              : (product as ProfileProducts).nome
+          }
+          productDescription={
+            whichPage === 'home'
+              ? (product as HomeProducts).descricao
+              : (product as ProfileProducts).descricao
+          }
+          dishCulture={
+            whichPage === 'home'
+              ? captalizeFirstLetter((product as HomeProducts).tipo)
+              : captalizeFirstLetter((product as ProfileProducts).tipo)
+          }
+          isWeekBest={
+            whichPage === 'home' ? (product as HomeProducts).destacado : false
+          }
+          rating={
+            whichPage === 'home'
+              ? (product as HomeProducts).avaliacao
+              : undefined
+          }
           buttonText={defineText()}
           onClick={() => onProductClick?.(product)}
         />
