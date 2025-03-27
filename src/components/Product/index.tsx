@@ -24,6 +24,7 @@ type Props = {
   dishCulture?: string;
   isWeekBest?: boolean;
   rating?: number;
+  restaurantId?: number;
   onClick?: () => void;
 };
 
@@ -36,6 +37,7 @@ const Product = ({
   productName,
   rating,
   whichPage,
+  restaurantId,
   onClick
 }: Props) => (
   <ProductWrapper whichPage={whichPage}>
@@ -71,7 +73,7 @@ const Product = ({
       <Button
         onClick={onClick}
         text={buttonText}
-        to="/profile"
+        to={restaurantId ? `/profile/${restaurantId}` : '/profile'}
         whichPage={whichPage}
       ></Button>
     </Content>

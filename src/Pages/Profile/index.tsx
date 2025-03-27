@@ -8,8 +8,11 @@ import ProductsList from '../../Containers/ProductsList';
 import Modal from '../../components/Modal';
 
 import { getRandomProduct } from '../../utils/utils';
+import { useParams } from 'react-router-dom';
 
 const Profile = () => {
+  const { restaurantId } = useParams();
+
   const [products, setProducts] = useState<ProfileProducts[]>([]);
 
   const [selectedProduct, setSelectedProduct] =
@@ -44,22 +47,32 @@ const Profile = () => {
       const data = await response.json();
 
       const allMenus = data.flatMap(
-        (restaurant: { tipo: string; cardapio: ProfileProducts[] }) =>
+        (restaurant: {
+          id: number;
+          tipo: string;
+          cardapio: ProfileProducts[];
+        }) =>
           restaurant.cardapio.map((product) => ({
             ...product,
-            tipo: restaurant.tipo
+            tipo: restaurant.tipo,
+            restaurantId: restaurant.id
           }))
       );
 
-      setProducts(allMenus);
-      setSelectedProduct(allMenus[0] || null);
+      const filteredProducts = allMenus.filter(
+        (product: ProfileProducts) =>
+          product.restaurantId === parseInt(restaurantId || '', 10)
+      );
 
-      const randomProduct = getRandomProduct(allMenus);
+      setProducts(filteredProducts);
+      setSelectedProduct(filteredProducts[0] || null);
+
+      const randomProduct = getRandomProduct(filteredProducts);
       setRandomProduct(randomProduct);
     } catch (error) {
       console.error('Error fetchin products:', error);
     }
-  }, []);
+  }, [restaurantId]);
 
   useEffect(() => {
     fetchProducts();

@@ -31,6 +31,11 @@ export const ProductsList = ({
     <Container whichPage={whichPage}>
       {products.map((product) => (
         <Product
+          restaurantId={
+            whichPage === 'home'
+              ? (product as HomeProducts).id
+              : (product as ProfileProducts).restaurantId
+          }
           whichPage={whichPage}
           key={product.id}
           imageSrc={

@@ -12,6 +12,7 @@ export type ProfileProducts = {
   foto: string;
   preco: number;
   id: number;
+  restaurantId: number;
   nome: string;
   descricao: string;
   porcao: string;
