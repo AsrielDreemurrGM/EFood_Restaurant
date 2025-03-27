@@ -40,7 +40,7 @@ const Modal = ({ isVisible, onClose, product }: Props) => (
         </Servings>
         <Button
           text={`Adicionar ao carrinho - ${formatPrice(product?.preco)}`}
-          to="/profile"
+          to="/"
           whichPage="profile"
         ></Button>
       </ModalWrapper>
