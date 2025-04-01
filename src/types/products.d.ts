@@ -6,6 +6,7 @@ export type HomeProducts = {
   avaliacao: number;
   descricao: string;
   capa: string;
+  cardapio?: ProfileProducts[];
 };
 
 export type ProfileProducts = {
