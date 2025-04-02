@@ -39,8 +39,8 @@ const Modal = ({ isVisible, onClose, product }: Props) => (
           Serve: de {product?.porcao || 'Porção não informada'}
         </Servings>
         <Button
+          onClick={onClose}
           text={`Adicionar ao carrinho - ${formatPrice(product?.preco)}`}
-          to="/"
           whichPage="profile"
         ></Button>
       </ModalWrapper>

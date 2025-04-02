@@ -4,11 +4,11 @@ import { ButtonStyle } from './styles';
 export type Props = {
   whichPage: 'home' | 'profile';
   text?: string;
-  to: string;
+  to?: string;
   onClick?: () => void;
 };
 
-const Button = ({ text, whichPage, to, onClick }: Props) => (
+const Button = ({ text, whichPage, to = '#', onClick }: Props) => (
   <ButtonStyle
     onClick={onClick}
     text={text}
