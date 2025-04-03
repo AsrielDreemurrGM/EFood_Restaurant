@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { BackgroundImage } from '../../styles/styles';
+
+import { BackgroundImage, colors } from '../../styles/styles';
 
 export const HeaderContainer = styled(BackgroundImage)`
   height: 186px;
 
   a {
+    color: ${colors.warmPink};
     margin-left: 80px;
   }
 `;
@@ -17,8 +19,7 @@ export const NavList = styled.ul`
 
 export const NavItem = styled.li`
   cursor: pointer;
-  p {
-    font-size: 18;
-    font-weight: 900;
-  }
+
+  font-size: 18px;
+  font-weight: 900;
 `;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { colors } from '../../styles/styles';
+
 import { ButtonStyle } from '../Button/styles';
 
 export const Container = styled.div`
@@ -90,4 +91,11 @@ export const TrashcanIcon = styled.img`
   height: 16px;
   right: 8px;
   bottom: 8px;
+`;
+
+export const EmptyCartText = styled.p`
+  font-weight: 700;
+  font-size: 16px;
+  color: ${colors.warmBeige};
+  text-align: center;
 `;

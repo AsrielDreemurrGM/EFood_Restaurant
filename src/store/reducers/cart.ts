@@ -4,10 +4,12 @@ import { ProfileProducts } from '../../types/products';
 
 type CartState = {
   products: ProfileProducts[];
+  isOpen: boolean;
 };
 
 const initialState: CartState = {
-  products: []
+  products: [],
+  isOpen: false
 };
 
 const cartSlice = createSlice({
@@ -15,11 +17,30 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<ProfileProducts>) => {
-      state.products.push(action.payload);
+      const product = state.products.find(
+        (product) => product.id === action.payload.id
+      );
+
+      if (!product) {
+        state.products.push(action.payload);
+      } else {
+        alert('Prato já está no carrinho');
+      }
+    },
+    remove: (state, action: PayloadAction<number>) => {
+      state.products = state.products.filter(
+        (product) => product.id !== action.payload
+      );
+    },
+    open: (state) => {
+      state.isOpen = true;
+    },
+    close: (state) => {
+      state.isOpen = false;
     }
   }
 });
 
-export const { add } = cartSlice.actions;
+export const { add, remove, open, close } = cartSlice.actions;
 
 export default cartSlice.reducer;

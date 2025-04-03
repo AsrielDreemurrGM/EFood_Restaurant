@@ -1,6 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
+
 import Button from '../Button';
 import {
   Container,
+  EmptyCartText,
   Overlay,
   Product,
   ProductImage,
@@ -10,58 +13,69 @@ import {
   TrashcanIcon
 } from './styles';
 
-import pizza from '../../assets/images/pizza.png';
 import trashcanIcon from '../../assets/images/trashcan.png';
 
-const Cart = () => (
-  <Container className="is-open">
-    <Overlay />
-    <Sidebar>
-      <ProductList>
-        <Product>
-          <ProductImage src={pizza} alt="Foto do Prato" title="Foto do Prato" />
-          <TrashcanIcon
-            src={trashcanIcon}
-            alt="Remover produto da lista"
-            title="Remover produto da lista"
-          />
-          <div>
-            <h3>Nome do Prato</h3>
-            <span>R$ 60,90</span>
-          </div>
-        </Product>
-        <Product>
-          <ProductImage src={pizza} alt="Foto do Prato" title="Foto do Prato" />
-          <TrashcanIcon
-            src={trashcanIcon}
-            alt="Ícone De Lixeira"
-            title="Remover produto da lista"
-          />
-          <div>
-            <h3>Nome do Prato</h3>
-            <span>R$ 60,90</span>
-          </div>
-        </Product>
-        <Product>
-          <ProductImage src={pizza} alt="Foto do Prato" title="Foto do Prato" />
-          <TrashcanIcon
-            src={trashcanIcon}
-            alt="Ícone De Lixeira"
-            title="Remover produto da lista"
-          />
-          <div>
-            <h3>Nome do Prato</h3>
-            <span>R$ 60,90</span>
-          </div>
-        </Product>
-      </ProductList>
-      <TotalPriceWrapper>
-        <p>Valor Total</p>
-        <span>R$ 182,70</span>
-      </TotalPriceWrapper>
-      <Button whichPage="profile" text="Continuar com a entrega" />
-    </Sidebar>
-  </Container>
-);
+import { RootReducer } from '../../store';
+import { close, remove } from '../../store/reducers/cart';
+
+import { formatPrice } from '../../utils/utils';
+
+const Cart = () => {
+  const dispatch = useDispatch();
+
+  const { products, isOpen } = useSelector((state: RootReducer) => state.cart);
+
+  const closeCart = () => {
+    dispatch(close());
+  };
+
+  const removeProduct = (id: number) => {
+    dispatch(remove(id));
+  };
+
+  const getTotalValue = () => {
+    return products.reduce((acumulator, currentValue) => {
+      if (!currentValue.preco) return 0;
+      return (acumulator += currentValue.preco);
+    }, 0);
+  };
+
+  return (
+    <Container className={isOpen ? 'is-open' : ''}>
+      <Overlay onClick={closeCart} />
+      <Sidebar>
+        <ProductList>
+          {products.length === 0 && (
+            <EmptyCartText>O carrinho está vazio...</EmptyCartText>
+          )}
+          {products.map((product) => (
+            <Product key={product.id}>
+              <ProductImage
+                src={product.foto}
+                alt={product.nome}
+                title={product.nome}
+              />
+              <TrashcanIcon
+                onClick={() => removeProduct(product.id)}
+                src={trashcanIcon}
+                alt="Remover"
+                title="Remover produto da lista"
+              />
+              <div>
+                <h3>{product.nome}</h3>
+                <span>{formatPrice(product.preco)}</span>
+              </div>
+            </Product>
+          ))}
+        </ProductList>
+        <TotalPriceWrapper>
+          <p>Valor Total</p>
+          <span>{formatPrice(getTotalValue())}</span>
+        </TotalPriceWrapper>
+        <Button whichPage="profile" text="Continuar com a entrega" />
+      </Sidebar>
+    </Container>
+  );
+};
 
 export default Cart;

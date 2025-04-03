@@ -36,7 +36,7 @@ const Profile = () => {
   );
 
   if (!selectedRestaurant) {
-    return <h4>Restaurante não encontrado</h4>;
+    return <h2>Carregando...</h2>;
   }
 
   const restaurantInfo = {
