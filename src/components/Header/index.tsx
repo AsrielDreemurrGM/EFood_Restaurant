@@ -29,7 +29,9 @@ const Header = () => {
             <img src={logo} alt={logo} />
           </Link>
           <NavItem onClick={openCart}>
-            <p>{products.length} produto(s) no carrinho</p>
+            <p>
+              {products.length} produto(s) <span>no carrinho</span>
+            </p>
           </NavItem>
         </NavList>
       </div>

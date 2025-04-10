@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/styles';
+import { breakpoints, colors } from '../../styles/styles';
 
 type Props = {
   whichPage: 'home' | 'profile';
@@ -8,6 +8,7 @@ type Props = {
 export const ProductWrapper = styled.div<Props>`
   position: relative;
   border-radius: 8px;
+  width: 100%;
 
   padding: ${(props) => (props.whichPage === 'home' ? '0' : '8px')};
 
@@ -16,8 +17,6 @@ export const ProductWrapper = styled.div<Props>`
 
   background-color: ${(props) =>
     props.whichPage === 'home' ? colors.white : colors.warmPink};
-
-  width: ${(props) => (props.whichPage === 'home' ? '472px' : '320px')};
 `;
 
 export const TagWrapper = styled.div`
@@ -46,6 +45,10 @@ export const Content = styled.div<Props>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    height: ${(props) => (props.whichPage === 'home' ? '249px' : '243px')};
+  }
 `;
 
 export const Title = styled.p<Props>`

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { colors } from '../../styles/styles';
+import { breakpoints, colors } from '../../styles/styles';
 
 import { ButtonStyle } from '../Button/styles';
 
@@ -30,6 +30,7 @@ export const Overlay = styled.div`
 
 export const Sidebar = styled.aside`
   z-index: 1;
+  overflow-y: scroll;
   padding: 32px 8px;
   max-width: 360px;
   width: 100%;
@@ -38,6 +39,10 @@ export const Sidebar = styled.aside`
   ${ButtonStyle} {
     max-width: 100%;
     width: 100%;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 300px;
   }
 `;
 

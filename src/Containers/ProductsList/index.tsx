@@ -67,7 +67,10 @@ export const ProductsList = ({
               : undefined
           }
           buttonText={defineText()}
-          onClick={() => onProductClick?.(product)}
+          onClick={() => {
+            onProductClick?.(product);
+            window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+          }}
         />
       ))}
     </Container>

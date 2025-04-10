@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BackgroundImage, colors } from '../../styles/styles';
+import { BackgroundImage, breakpoints, colors } from '../../styles/styles';
 
 export const HeroImage = styled(BackgroundImage)`
   position: relative;
@@ -30,6 +30,10 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 156px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    gap: 126px;
+  }
 `;
 
 export const Culture = styled.p`

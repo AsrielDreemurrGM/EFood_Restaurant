@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/styles';
+import { breakpoints, colors } from '../../styles/styles';
 
 export const ModalContainer = styled.div`
   display: none;
@@ -30,11 +30,14 @@ export const ModalContent = styled.div`
   z-index: 1;
   position: relative;
   width: 100%;
-  max-height: 344px;
-  height: 100%;
+  max-height: 344pxpx;
   padding: 32px;
   background-color: ${colors.warmPink};
   color: ${colors.white};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: block;
+  }
 `;
 
 export const CloseIcon = styled.img`
@@ -58,6 +61,11 @@ export const ProductImage = styled.img`
   width: 280px;
   object-fit: cover;
   margin-right: 24px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 130px;
+    width: 100%;
+  }
 `;
 
 export const Title = styled.p`
