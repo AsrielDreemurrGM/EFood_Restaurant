@@ -5,11 +5,13 @@ import { ProfileProducts } from '../../types/products';
 type CartState = {
   products: ProfileProducts[];
   isOpen: boolean;
+  isPaying: boolean;
 };
 
 const initialState: CartState = {
   products: [],
-  isOpen: false
+  isOpen: false,
+  isPaying: false
 };
 
 const cartSlice = createSlice({
@@ -37,10 +39,20 @@ const cartSlice = createSlice({
     },
     close: (state) => {
       state.isOpen = false;
+    },
+    startPayment: (state) => {
+      state.isPaying = true;
+    },
+    cancelPayment: (state) => {
+      state.isPaying = false;
+    },
+    clear: (state) => {
+      state.products = [];
     }
   }
 });
 
-export const { add, remove, open, close } = cartSlice.actions;
+export const { add, remove, open, close, clear, startPayment, cancelPayment } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
