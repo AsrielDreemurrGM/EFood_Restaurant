@@ -44,35 +44,40 @@ const Cart = () => {
     <Container className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
       <Sidebar>
-        <ProductList>
-          {products.length === 0 && (
-            <EmptyCartText>O carrinho está vazio...</EmptyCartText>
-          )}
-          {products.map((product) => (
-            <Product key={product.id}>
-              <ProductImage
-                src={product.foto}
-                alt={product.nome}
-                title={product.nome}
-              />
-              <TrashcanIcon
-                onClick={() => removeProduct(product.id)}
-                src={trashcanIcon}
-                alt="Remover"
-                title="Remover produto da lista"
-              />
-              <div>
-                <h3>{product.nome}</h3>
-                <span>{formatPrice(product.preco)}</span>
-              </div>
-            </Product>
-          ))}
-        </ProductList>
-        <TotalPriceWrapper>
-          <p>Valor Total</p>
-          <span>{formatPrice(getTotalValue())}</span>
-        </TotalPriceWrapper>
-        <Button whichPage="profile" text="Continuar com a entrega" />
+        {products.length === 0 ? (
+          <EmptyCartText>
+            O carrinho está vazio. Por favor adicione um produto para continuar.
+          </EmptyCartText>
+        ) : (
+          <>
+            <ProductList>
+              {products.map((product) => (
+                <Product key={product.id}>
+                  <ProductImage
+                    src={product.foto}
+                    alt={product.nome}
+                    title={product.nome}
+                  />
+                  <TrashcanIcon
+                    onClick={() => removeProduct(product.id)}
+                    src={trashcanIcon}
+                    alt="Remover"
+                    title="Remover produto da lista"
+                  />
+                  <div>
+                    <h3>{product.nome}</h3>
+                    <span>{formatPrice(product.preco)}</span>
+                  </div>
+                </Product>
+              ))}
+            </ProductList>
+            <TotalPriceWrapper>
+              <p>Valor Total</p>
+              <span>{formatPrice(getTotalValue())}</span>
+            </TotalPriceWrapper>
+            <Button whichPage="profile" text="Continuar com a entrega" />
+          </>
+        )}
       </Sidebar>
     </Container>
   );
