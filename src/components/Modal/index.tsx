@@ -34,9 +34,18 @@ const Modal = ({ isVisible, onClose, product }: Props) => {
   };
 
   return (
-    <ModalContainer className={isVisible ? 'active' : ''}>
+    <ModalContainer
+      className={isVisible ? 'active' : ''}
+      aria-hidden={!isVisible}
+    >
       <ModalContent className="globalContainer">
-        <CloseIcon onClick={onClose} src={closeIcon} />
+        <CloseIcon
+          role="button"
+          aria-label="Ícone de fechar"
+          title="Ícone de fechar"
+          onClick={onClose}
+          src={closeIcon}
+        />
         <ProductImage
           src={product?.foto}
           alt={product?.nome}
@@ -49,6 +58,9 @@ const Modal = ({ isVisible, onClose, product }: Props) => {
             Serve: de {product?.porcao || 'Porção não informada'}
           </Servings>
           <Button
+            title={`Adicionar produto ao carrinho ${formatPrice(
+              product?.preco
+            )}`}
             onClick={() => {
               onClose();
               addProductToCart();
@@ -58,7 +70,7 @@ const Modal = ({ isVisible, onClose, product }: Props) => {
           ></Button>
         </ModalWrapper>
       </ModalContent>
-      <div onClick={onClose} className="overlay"></div>
+      <div onClick={onClose} className="overlay" aria-hidden="true"></div>
     </ModalContainer>
   );
 };

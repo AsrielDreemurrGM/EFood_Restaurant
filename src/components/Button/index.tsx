@@ -9,6 +9,7 @@ export type Props = {
   type?: 'button' | 'submit' | 'reset';
   asLink?: boolean;
   disabled?: boolean;
+  title?: string;
 };
 
 const Button = ({
@@ -18,7 +19,8 @@ const Button = ({
   onClick,
   type = 'button',
   asLink = true,
-  disabled = false
+  disabled = false,
+  title
 }: Props) => {
   if (asLink) {
     return (
@@ -28,6 +30,7 @@ const Button = ({
         $whichPage={$whichPage}
         $text={$text}
         onClick={onClick}
+        title={title}
       >
         {$text}
       </ButtonStyle>
@@ -42,6 +45,7 @@ const Button = ({
       $whichPage={$whichPage}
       $text={$text}
       disabled={disabled}
+      title={title}
     >
       {$text}
     </ButtonStyle>

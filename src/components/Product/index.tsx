@@ -63,14 +63,22 @@ const Product = ({
       <TitleWrapper>
         <Title $whichPage={$whichPage}>{productName}</Title>
         {$whichPage === 'home' && typeof rating === 'number' && (
-          <RatingWrapper>
+          <RatingWrapper
+            title={`Avaliação: ${rating} de 5 estrelas`}
+            aria-label={`Avaliação: ${rating} de 5 estrelas`}
+          >
             <Rating $whichPage={$whichPage}>{rating}</Rating>
-            <StarIcon />
+            <StarIcon aria-hidden="true" />
           </RatingWrapper>
         )}
       </TitleWrapper>
       <Description $whichPage={$whichPage}>{productDescription}</Description>
       <Button
+        title={
+          $whichPage === 'home'
+            ? `Acessar produtos do restaurante ${productName}`
+            : `Ver informações do prato ${productName}`
+        }
         onClick={onClick}
         $text={buttonText}
         to={restaurantId ? `/profile/${restaurantId}` : '/profile'}

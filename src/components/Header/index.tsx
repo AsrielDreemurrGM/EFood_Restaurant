@@ -23,12 +23,14 @@ const Header = () => {
       <div className="globalContainer">
         <NavList>
           <NavItem>
-            <Link to="/">Restaurantes</Link>
+            <Link title="Voltar para a listagem de restaurantes" to="/">
+              Restaurantes
+            </Link>
           </NavItem>
-          <Link to="/">
+          <Link title="Voltar para a página inicial" to="/">
             <img src={logo} alt={logo} />
           </Link>
-          <NavItem onClick={openCart}>
+          <NavItem title="Abrir carrinho" onClick={openCart}>
             <p>
               {products.length} produto(s) <span>no carrinho</span>
             </p>
