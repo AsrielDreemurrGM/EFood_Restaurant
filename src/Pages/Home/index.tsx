@@ -1,4 +1,5 @@
 import Banner from '../../components/Banner';
+import LoadingAnimation from '../../components/LoadingAnimation';
 import ProductsList from '../../Containers/ProductsList';
 
 import { useGetRestaurantsQuery } from '../../services/api';
@@ -7,18 +8,16 @@ import { HomeProducts } from '../../types/products';
 const Home = () => {
   const { data: restaurants, isLoading } = useGetRestaurantsQuery();
 
+  if (isLoading) return <LoadingAnimation />;
+
   return (
     <>
       <Banner />
       <div className="globalContainer">
-        {isLoading ? (
-          <h2>Carregando...</h2>
-        ) : (
-          <ProductsList
-            whichPage="home"
-            products={restaurants as HomeProducts[]}
-          />
-        )}
+        <ProductsList
+          whichPage="home"
+          products={restaurants as HomeProducts[]}
+        />
       </div>
     </>
   );

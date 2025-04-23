@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import Hero from '../../components/Hero';
 import ProductsList from '../../Containers/ProductsList';
 import Modal from '../../components/Modal';
+import LoadingAnimation from '../../components/LoadingAnimation';
 
 import { useGetRestaurantsQuery } from '../../services/api';
 
@@ -36,7 +37,7 @@ const Profile = () => {
   );
 
   if (!selectedRestaurant) {
-    return <h2>Carregando...</h2>;
+    return <LoadingAnimation />;
   }
 
   const restaurantInfo = {
@@ -59,7 +60,7 @@ const Profile = () => {
       <Hero restaurant={restaurantInfo} />
       <div className="globalContainer">
         {isLoading ? (
-          <h2>Carregando...</h2>
+          <LoadingAnimation />
         ) : (
           <ProductsList
             products={products}

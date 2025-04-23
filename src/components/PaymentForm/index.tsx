@@ -8,7 +8,7 @@ import InputMask from 'react-input-mask-next';
 
 import Button from '../Button';
 
-import { cancelPayment, clear, close } from '../../store/reducers/cart';
+import { cancelPayment, clear } from '../../store/reducers/cart';
 import {
   ErrorText,
   FormContainer,
@@ -18,6 +18,7 @@ import {
 
 import { usePurchaseMutation } from '../../services/api';
 import { RootReducer } from '../../store';
+import LoadingAnimation from '../LoadingAnimation';
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
@@ -195,7 +196,6 @@ const PaymentForm = () => {
 
   const resetCart = useCallback(() => {
     dispatch(clear());
-    dispatch(close());
     dispatch(cancelPayment());
     setIsPaying(false);
   }, [dispatch, setIsPaying]);
@@ -204,10 +204,12 @@ const PaymentForm = () => {
     if (isSuccess && data) {
       const timer = setTimeout(() => {
         resetCart();
-      }, 15000);
+      }, 20000);
       return () => clearTimeout(timer);
     }
   }, [isSuccess, data, resetCart]);
+
+  if (isLoading) return <LoadingAnimation />;
 
   if (isSuccess && data)
     return (
