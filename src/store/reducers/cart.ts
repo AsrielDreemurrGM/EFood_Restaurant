@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ProfileProducts } from '../../types/products';
-
 type CartState = {
   products: ProfileProducts[];
   isOpen: boolean;

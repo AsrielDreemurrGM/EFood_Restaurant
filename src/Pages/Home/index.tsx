@@ -3,7 +3,6 @@ import LoadingAnimation from '../../components/LoadingAnimation';
 import ProductsList from '../../Containers/ProductsList';
 
 import { useGetRestaurantsQuery } from '../../services/api';
-import { HomeProducts } from '../../types/products';
 
 const Home = () => {
   const { data: restaurants, isLoading } = useGetRestaurantsQuery();

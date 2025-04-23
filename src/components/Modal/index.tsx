@@ -15,8 +15,6 @@ import Button from '../Button';
 
 import closeIcon from '../../assets/images/close-icon.png';
 
-import { ProfileProducts } from '../../types/products';
-
 import { formatPrice } from '../../utils/utils';
 import { add, open } from '../../store/reducers/cart';
 

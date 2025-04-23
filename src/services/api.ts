@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { HomeProducts } from '../types/products';
 
 type CheckoutResponse = {
   orderId: string;

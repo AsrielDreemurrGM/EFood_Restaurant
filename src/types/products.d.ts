@@ -1,4 +1,4 @@
-export type HomeProducts = {
+declare type HomeProducts = {
   id: number;
   titulo: string;
   destacado: boolean;
@@ -9,7 +9,7 @@ export type HomeProducts = {
   cardapio?: ProfileProducts[];
 };
 
-export type ProfileProducts = {
+declare type ProfileProducts = {
   foto: string;
   preco: number;
   id: number;

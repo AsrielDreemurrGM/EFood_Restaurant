@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { HomeProducts, ProfileProducts } from '../../types/products';
-
 import Header from '../../components/Header';
 import Hero from '../../components/Hero';
 import ProductsList from '../../Containers/ProductsList';

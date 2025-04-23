@@ -2,8 +2,6 @@ import { Container } from './styles';
 
 import Product from '../../components/Product';
 
-import { HomeProducts, ProfileProducts } from '../../types/products';
-
 import { captalizeFirstLetter } from '../../utils/utils';
 
 type Props = {
