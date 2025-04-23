@@ -1,33 +1,38 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/styles';
+import { breakpoints, colors } from '../../styles/styles';
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   display: block;
 
-  form {
-    margin-bottom: 24px;
-
-    span {
-      color: ${colors.warmBeige};
-      font-size: 16px;
-      font-weight: 700;
-    }
+  span {
+    color: ${colors.warmBeige};
+    font-size: 16px;
+    font-weight: 700;
   }
 
   .button-wrapper {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-top: 24px;
   }
 
   .input-group {
     display: flex;
     gap: 34px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      gap: 10px;
+    }
   }
 
   .card-information {
     input {
       width: 228px;
+
+      @media (max-width: ${breakpoints.tablet}) {
+        width: 200px;
+      }
     }
   }
 `;
@@ -75,4 +80,13 @@ export const PurchaseConfirmation = styled.div`
   .marginBottom {
     margin-bottom: 24px;
   }
+`;
+
+export const ErrorText = styled.p`
+  hyphens: auto;
+  margin-top: 2px;
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
 `;

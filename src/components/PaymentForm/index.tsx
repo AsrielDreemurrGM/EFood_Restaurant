@@ -1,15 +1,145 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Button from '../Button';
 
 import { cancelPayment, clear, close } from '../../store/reducers/cart';
-import { FormContainer, InputWrapper, PurchaseConfirmation } from './styles';
-import { useState } from 'react';
+import {
+  ErrorText,
+  FormContainer,
+  InputWrapper,
+  PurchaseConfirmation
+} from './styles';
+
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+import InputMask from 'react-input-mask-next';
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
   const [isPaying, setIsPaying] = useState(false);
   const [finishedPayment, setFinishedPayment] = useState(false);
+
+  const currentYear = new Date().getFullYear();
+  const currentYearShort = String(currentYear).slice(-2);
+
+  const deliveryValidation = Yup.object({
+    receiver: Yup.string()
+      .trim()
+      .matches(
+        /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/,
+        'O nome não pode conter números ou caracteres especiais'
+      )
+      .min(5, 'O nome precisa ter pelo menos 5 caracteres')
+      .max(70, 'O nome não pode ultrapassar 70 caracteres')
+      .required('O nome do destinatário é obrigatório')
+      .test(
+        'not-only-spaces',
+        'O nome não pode estar vazio',
+        (value) => value.trim().length > 0
+      ),
+    address: Yup.string()
+      .trim()
+      .min(5, 'O endereço precisa ter pelo menos 5 caracteres')
+      .max(120, 'O endereço não pode ultrapassar 120 caracteres')
+      .required('O Endereço é obrigatório')
+      .test(
+        'not-only-spaces',
+        'O endereço não pode estar vazio',
+        (value) => value.trim().length > 0
+      ),
+    city: Yup.string()
+      .trim()
+      .matches(
+        /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/,
+        'A cidade não pode conter números ou caracteres especiais'
+      )
+      .min(4, 'A cidade precisa ter pelo menos 4 caracteres')
+      .max(60, 'A cidade não pode ultrapassar 60 caracteres')
+      .required('A cidade é obrigatória')
+      .test(
+        'not-only-spaces',
+        'O campo não pode estar vazio',
+        (value) => value.trim().length > 0
+      ),
+    postalCode: Yup.string()
+      .matches(/^\d{5}-\d{3}$/, 'Formato de CEP inválido (use 00000-000)')
+      .required('O CEP é obrigatório'),
+    residenceNumber: Yup.string()
+      .matches(/^\d+$/, 'O campo deve conter apenas números')
+      .min(1, 'O número da residência precisa ter pelo menos 1 número')
+      .max(10, 'O número da residência não pode ultrapassar 10 números')
+      .required('O número da residência é obrigatório'),
+    additionalDetails: Yup.string()
+      .min(4, 'O complemento precisa ter pelo menos 4 caracteres')
+      .max(80, 'O complemento não pode ultrapassar 80 caracteres')
+      .nullable()
+  });
+
+  const paymentValidation = Yup.object({
+    cardOwner: Yup.string()
+      .trim()
+      .matches(
+        /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/,
+        'O nome não pode conter números ou caracteres especiais'
+      )
+      .min(5, 'O nome precisa ter pelo menos 5 caracteres')
+      .max(40, 'O nome pode ter no máximo 40 caracteres')
+      .required('O nome do titular é obrigatório')
+      .test(
+        'not-only-spaces',
+        'O nome não pode estar vazio',
+        (value) => value.trim().length > 0
+      ),
+    cardNumber: Yup.string()
+      .required('O número do cartão é obrigatório')
+      .min(19, 'O número do cartão deve ter 16 dígitos')
+      .max(19, 'O número do cartão deve ter 16 dígitos'),
+    cardCode: Yup.string()
+      .required('O CVV é obrigatório')
+      .min(3, 'O CVV deve ter 3 dígitos')
+      .max(3, 'O CVV deve ter 3 dígitos'),
+    expiresMonth: Yup.string()
+      .required('O mês de vencimento é obrigatório')
+      .matches(/^(0[1-9]|1[0-2])$/, 'O mês deve estar entre 01 e 12'),
+    expiresYear: Yup.string()
+      .required('O ano de vencimento é obrigatório')
+      .matches(/^\d{2}$/, 'O ano deve ter 2 dígitos')
+      .test('valid-year', 'Ano inválido', (value) => {
+        if (!value) return false;
+        const input = parseInt(value, 10);
+        const min = parseInt(currentYearShort, 10);
+        return input >= min;
+      })
+  });
+
+  const form = useFormik({
+    initialValues: {
+      cardOwner: '',
+      cardNumber: '',
+      cardCode: '',
+      expiresMonth: '',
+      expiresYear: '',
+
+      receiver: '',
+      address: '',
+      city: '',
+      postalCode: '',
+      residenceNumber: '',
+      additionalDetails: ''
+    },
+    validationSchema: isPaying ? paymentValidation : deliveryValidation,
+    enableReinitialize: true,
+    onSubmit: () => {
+      console.log('Compra realizada com sucesso');
+      setFinishedPayment(true);
+
+      setTimeout(() => {
+        resetCart();
+      }, 15000);
+    }
+  });
 
   const cancel = () => {
     dispatch(cancelPayment());
@@ -19,12 +149,19 @@ const PaymentForm = () => {
     setIsPaying(false);
   };
 
-  const proceedToPayment = () => {
-    setIsPaying(true);
-  };
-
-  const finishPayment = () => {
-    setFinishedPayment(true);
+  const proceedToPayment = async () => {
+    const errors = await form.validateForm();
+    if (Object.keys(errors).length === 0) {
+      setIsPaying(true);
+    } else {
+      form.setTouched({
+        receiver: true,
+        address: true,
+        city: true,
+        postalCode: true,
+        residenceNumber: true
+      });
+    }
   };
 
   const resetCart = () => {
@@ -62,90 +199,218 @@ const PaymentForm = () => {
     );
 
   return (
-    <FormContainer>
+    <FormContainer onSubmit={form.handleSubmit}>
       {isPaying ? (
         <>
-          <form>
-            <span>Pagamento</span>
-            <InputWrapper>
-              <label htmlFor="cardOwner">Nome no cartão</label>
-              <input type="text" id="cardOwner" />
+          <span>Pagamento</span>
+          <InputWrapper>
+            <label htmlFor="cardOwner">Nome no cartão</label>
+            <input
+              type="text"
+              id="cardOwner"
+              value={form.values.cardOwner}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              inputMode="text"
+            />
+            {form.touched.cardOwner && form.errors.cardOwner && (
+              <ErrorText className="error">{form.errors.cardOwner}</ErrorText>
+            )}
+          </InputWrapper>
+          <div className="input-group">
+            <InputWrapper className="card-information">
+              <label htmlFor="cardNumber">Número do cartão</label>
+              <InputMask
+                mask="9999 9999 9999 9999"
+                type="text"
+                id="cardNumber"
+                value={form.values.cardNumber}
+                onChange={form.handleChange}
+                onBlur={form.handleBlur}
+                inputMode="numeric"
+              />
+              {form.touched.cardNumber && form.errors.cardNumber && (
+                <ErrorText className="error">
+                  {form.errors.cardNumber}
+                </ErrorText>
+              )}
             </InputWrapper>
-            <div className="input-group">
-              <InputWrapper className="card-information">
-                <label htmlFor="cardNumber">Número do cartão</label>
-                <input type="text" id="cardNumber" />
-              </InputWrapper>
-              <InputWrapper>
-                <label htmlFor="cardCode">CVV</label>
-                <input type="text" id="cardCode" />
-              </InputWrapper>
-            </div>
-            <div className="input-group">
-              <InputWrapper>
-                <label htmlFor="expiresMonth">Mês de vencimento</label>
-                <input type="text" id="expiresMonth" />
-              </InputWrapper>
-              <InputWrapper>
-                <label htmlFor="expiresYear">Ano de vencimento</label>
-                <input type="text" id="expiresYear" />
-              </InputWrapper>
-            </div>
-          </form>
+            <InputWrapper>
+              <label htmlFor="cardCode">CVV</label>
+              <InputMask
+                mask="999"
+                type="text"
+                id="cardCode"
+                value={form.values.cardCode}
+                onChange={form.handleChange}
+                onBlur={form.handleBlur}
+                inputMode="numeric"
+              />
+              {form.touched.cardCode && form.errors.cardCode && (
+                <ErrorText className="error">{form.errors.cardCode}</ErrorText>
+              )}
+            </InputWrapper>
+          </div>
+          <div className="input-group">
+            <InputWrapper>
+              <label htmlFor="expiresMonth">Mês de vencimento</label>
+              <InputMask
+                mask="99"
+                type="text"
+                id="expiresMonth"
+                value={form.values.expiresMonth}
+                onChange={form.handleChange}
+                onBlur={form.handleBlur}
+                inputMode="numeric"
+              />
+              {form.touched.expiresMonth && form.errors.expiresMonth && (
+                <ErrorText className="error">
+                  {form.errors.expiresMonth}
+                </ErrorText>
+              )}
+            </InputWrapper>
+            <InputWrapper>
+              <label htmlFor="expiresYear">Ano de vencimento</label>
+              <InputMask
+                mask="99"
+                type="text"
+                id="expiresYear"
+                value={form.values.expiresYear}
+                onChange={form.handleChange}
+                onBlur={form.handleBlur}
+                inputMode="numeric"
+              />
+              {form.touched.expiresYear && form.errors.expiresYear && (
+                <ErrorText className="error">
+                  {form.errors.expiresYear}
+                </ErrorText>
+              )}
+            </InputWrapper>
+          </div>
           <div className="button-wrapper">
             <Button
               whichPage="profile"
               text="Finalizar pagamento"
-              onClick={finishPayment}
+              type="submit"
+              asLink={false}
             />
             <Button
               whichPage="profile"
               text="Voltar para a edição de endereço"
               onClick={returnToDelivery}
+              type="button"
             />
           </div>
         </>
       ) : (
         <>
-          <form>
-            <span>Entrega</span>
+          <span>Entrega</span>
+          <InputWrapper>
+            <label htmlFor="receiver">Quem irá receber</label>
+            <input
+              type="text"
+              id="receiver"
+              value={form.values.receiver}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              inputMode="text"
+            />
+            {form.touched.receiver && form.errors.receiver && (
+              <ErrorText className="error">{form.errors.receiver}</ErrorText>
+            )}
+          </InputWrapper>
+          <InputWrapper>
+            <label htmlFor="address">Endereço</label>
+            <input
+              type="text"
+              id="address"
+              value={form.values.address}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              inputMode="text"
+            />
+            {form.touched.address && form.errors.address && (
+              <ErrorText className="error">{form.errors.address}</ErrorText>
+            )}
+          </InputWrapper>
+          <InputWrapper>
+            <label htmlFor="city">Cidade</label>
+            <input
+              type="text"
+              id="city"
+              value={form.values.city}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              inputMode="text"
+            />
+            {form.touched.city && form.errors.city && (
+              <ErrorText className="error">{form.errors.city}</ErrorText>
+            )}
+          </InputWrapper>
+          <div className="input-group">
             <InputWrapper>
-              <label htmlFor="receiver">Quem irá receber</label>
-              <input type="text" id="receiver" />
+              <label htmlFor="postalCode">CEP</label>
+              <InputMask
+                mask="99999-999"
+                type="text"
+                id="postalCode"
+                value={form.values.postalCode}
+                onChange={form.handleChange}
+                onBlur={form.handleBlur}
+                inputMode="numeric"
+              />
+              {form.touched.postalCode && form.errors.postalCode && (
+                <ErrorText className="error">
+                  {form.errors.postalCode}
+                </ErrorText>
+              )}
             </InputWrapper>
             <InputWrapper>
-              <label htmlFor="address">Endereço</label>
-              <input type="text" id="address" />
+              <label htmlFor="residenceNumber">Número</label>
+              <input
+                type="text"
+                id="residenceNumber"
+                value={form.values.residenceNumber}
+                onChange={form.handleChange}
+                onBlur={form.handleBlur}
+                inputMode="numeric"
+              />
+              {form.touched.residenceNumber && form.errors.residenceNumber && (
+                <ErrorText className="error">
+                  {form.errors.residenceNumber}
+                </ErrorText>
+              )}
             </InputWrapper>
-            <InputWrapper>
-              <label htmlFor="city">Cidade</label>
-              <input type="text" id="city" />
-            </InputWrapper>
-            <div className="input-group">
-              <InputWrapper>
-                <label htmlFor="postalCode">CEP</label>
-                <input type="text" id="postalCode" />
-              </InputWrapper>
-              <InputWrapper>
-                <label htmlFor="residenceNumber">Número</label>
-                <input type="text" id="residenceNumber" />
-              </InputWrapper>
-            </div>
-            <InputWrapper>
-              <label htmlFor="additionalDetails">Complemento (opcional)</label>
-              <input type="text" id="additionalDetails" />
-            </InputWrapper>
-          </form>
+          </div>
+          <InputWrapper>
+            <label htmlFor="additionalDetails">Complemento (opcional)</label>
+            <input
+              type="text"
+              id="additionalDetails"
+              value={form.values.additionalDetails}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              inputMode="text"
+            />
+            {form.touched.additionalDetails &&
+              form.errors.additionalDetails && (
+                <ErrorText className="error">
+                  {form.errors.additionalDetails}
+                </ErrorText>
+              )}
+          </InputWrapper>
           <div className="button-wrapper">
             <Button
               whichPage="profile"
               text="Continuar com o pagamento"
               onClick={proceedToPayment}
+              type="button"
             />
             <Button
               whichPage="profile"
               text="Voltar para o carrinho"
               onClick={cancel}
+              type="button"
             />
           </div>
         </>
