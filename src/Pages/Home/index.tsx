@@ -14,7 +14,7 @@ const Home = () => {
       <Banner />
       <div className="globalContainer">
         <ProductsList
-          whichPage="home"
+          $whichPage="home"
           products={restaurants as HomeProducts[]}
         />
       </div>

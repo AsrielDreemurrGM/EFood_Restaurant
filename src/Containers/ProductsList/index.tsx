@@ -5,19 +5,19 @@ import Product from '../../components/Product';
 import { captalizeFirstLetter } from '../../utils/utils';
 
 type Props = {
-  whichPage: 'home' | 'profile';
+  $whichPage: 'home' | 'profile';
   onProductClick?: (product: HomeProducts | ProfileProducts) => void;
   products: HomeProducts[] | ProfileProducts[];
 };
 
 export const ProductsList = ({
-  whichPage,
+  $whichPage,
   onProductClick,
   products
 }: Props) => {
   function defineText() {
     let buttonText = '';
-    if (whichPage === 'home') {
+    if ($whichPage === 'home') {
       buttonText = 'Saiba mais';
       return buttonText;
     }
@@ -26,41 +26,41 @@ export const ProductsList = ({
   }
 
   return (
-    <Container whichPage={whichPage}>
+    <Container $whichPage={$whichPage}>
       {products.map((product) => (
         <Product
           restaurantId={
-            whichPage === 'home'
+            $whichPage === 'home'
               ? (product as HomeProducts).id
               : (product as ProfileProducts).restaurantId
           }
-          whichPage={whichPage}
+          $whichPage={$whichPage}
           key={product.id}
           imageSrc={
-            whichPage === 'home'
+            $whichPage === 'home'
               ? (product as HomeProducts).capa
               : (product as ProfileProducts).foto
           }
           productName={
-            whichPage === 'home'
+            $whichPage === 'home'
               ? (product as HomeProducts).titulo
               : (product as ProfileProducts).nome
           }
           productDescription={
-            whichPage === 'home'
+            $whichPage === 'home'
               ? (product as HomeProducts).descricao
               : (product as ProfileProducts).descricao
           }
           dishCulture={
-            whichPage === 'home'
+            $whichPage === 'home'
               ? captalizeFirstLetter((product as HomeProducts).tipo)
               : captalizeFirstLetter((product as ProfileProducts).tipo)
           }
           isWeekBest={
-            whichPage === 'home' ? (product as HomeProducts).destacado : false
+            $whichPage === 'home' ? (product as HomeProducts).destacado : false
           }
           rating={
-            whichPage === 'home'
+            $whichPage === 'home'
               ? (product as HomeProducts).avaliacao
               : undefined
           }

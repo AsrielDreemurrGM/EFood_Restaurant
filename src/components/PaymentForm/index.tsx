@@ -233,7 +233,7 @@ const PaymentForm = () => {
           Esperamos que desfrute de uma deliciosa e agradável experiência
           gastronômica. Bom apetite!
         </p>
-        <Button whichPage="profile" text="Concluir" onClick={resetCart} />
+        <Button $whichPage="profile" $text="Concluir" onClick={resetCart} />
       </PurchaseConfirmation>
     );
 
@@ -328,15 +328,15 @@ const PaymentForm = () => {
           </div>
           <div className="button-wrapper">
             <Button
-              whichPage="profile"
-              text={isLoading ? 'Processando...' : 'Finalizar pagamento'}
+              $whichPage="profile"
+              $text={isLoading ? 'Processando...' : 'Finalizar pagamento'}
               type="submit"
               asLink={false}
               disabled={isLoading}
             />
             <Button
-              whichPage="profile"
-              text="Voltar para a edição de endereço"
+              $whichPage="profile"
+              $text="Voltar para a edição de endereço"
               onClick={returnToDelivery}
               type="button"
             />
@@ -441,14 +441,14 @@ const PaymentForm = () => {
           </InputWrapper>
           <div className="button-wrapper">
             <Button
-              whichPage="profile"
-              text="Continuar com o pagamento"
+              $whichPage="profile"
+              $text="Continuar com o pagamento"
               onClick={proceedToPayment}
               type="button"
             />
             <Button
-              whichPage="profile"
-              text="Voltar para o carrinho"
+              $whichPage="profile"
+              $text="Voltar para o carrinho"
               onClick={cancel}
               type="button"
             />

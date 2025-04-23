@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { breakpoints, colors } from '../../styles/styles';
 
 type Props = {
-  whichPage: 'home' | 'profile';
+  $whichPage: 'home' | 'profile';
 };
 
 export const ProductWrapper = styled.div<Props>`
@@ -10,13 +10,13 @@ export const ProductWrapper = styled.div<Props>`
   border-radius: 8px;
   width: 100%;
 
-  padding: ${(props) => (props.whichPage === 'home' ? '0' : '8px')};
+  padding: ${(props) => (props.$whichPage === 'home' ? '0' : '8px')};
 
   color: ${(props) =>
-    props.whichPage === 'home' ? colors.warmPink : colors.warmBeige};
+    props.$whichPage === 'home' ? colors.warmPink : colors.warmBeige};
 
   background-color: ${(props) =>
-    props.whichPage === 'home' ? colors.white : colors.warmPink};
+    props.$whichPage === 'home' ? colors.white : colors.warmPink};
 `;
 
 export const TagWrapper = styled.div`
@@ -31,36 +31,36 @@ export const Image = styled.img<Props>`
   display: block;
   width: 100%;
   height: 217px;
-  border-radius: ${(props) => (props.whichPage === 'home' ? `0` : '8px')};
+  border-radius: ${(props) => (props.$whichPage === 'home' ? `0` : '8px')};
 `;
 
 export const Content = styled.div<Props>`
-  padding: ${(props) => (props.whichPage === 'home' ? `8px` : '0')};
+  padding: ${(props) => (props.$whichPage === 'home' ? `8px` : '0')};
 
-  border-style: ${(props) => (props.whichPage === 'home' ? 'solid' : 'none')};
+  border-style: ${(props) => (props.$whichPage === 'home' ? 'solid' : 'none')};
 
   border-width: 0px 1px 1px 1px;
   border-color: ${colors.warmPink};
-  min-height: ${(props) => (props.whichPage === 'home' ? '205px' : '243px')};
+  min-height: ${(props) => (props.$whichPage === 'home' ? '205px' : '243px')};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   @media (max-width: ${breakpoints.desktop}) {
-    height: ${(props) => (props.whichPage === 'home' ? '249px' : '243px')};
+    height: ${(props) => (props.$whichPage === 'home' ? '249px' : '243px')};
   }
 `;
 
 export const Title = styled.p<Props>`
-  padding-top: ${(props) => (props.whichPage === 'home' ? `0` : '8px')};
-  font-size: ${(props) => (props.whichPage === 'home' ? `18px` : '16px')};
-  font-weight: ${(props) => (props.whichPage === 'home' ? `700` : '900')};
+  padding-top: ${(props) => (props.$whichPage === 'home' ? `0` : '8px')};
+  font-size: ${(props) => (props.$whichPage === 'home' ? `18px` : '16px')};
+  font-weight: ${(props) => (props.$whichPage === 'home' ? `700` : '900')};
 `;
 
 export const Rating = styled(Title)``;
 
 export const Description = styled.p<Props>`
-  padding: ${(props) => (props.whichPage === 'home' ? `16px 0` : '8px 0')};
+  padding: ${(props) => (props.$whichPage === 'home' ? `16px 0` : '8px 0')};
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;

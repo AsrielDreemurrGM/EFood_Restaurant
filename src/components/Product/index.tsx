@@ -20,7 +20,7 @@ type Props = {
   imageSrc: string;
   productDescription: string;
   productName: string;
-  whichPage: 'home' | 'profile';
+  $whichPage: 'home' | 'profile';
   dishCulture?: string;
   isWeekBest?: boolean;
   rating?: number;
@@ -36,18 +36,18 @@ const Product = ({
   productDescription,
   productName,
   rating,
-  whichPage,
+  $whichPage,
   restaurantId,
   onClick
 }: Props) => (
-  <ProductWrapper whichPage={whichPage}>
+  <ProductWrapper $whichPage={$whichPage}>
     <Image
-      whichPage={whichPage}
+      $whichPage={$whichPage}
       src={imageSrc}
       alt={productName}
       title={productName}
     />
-    {whichPage === 'home' && dishCulture && (
+    {$whichPage === 'home' && dishCulture && (
       <TagWrapper>
         {isWeekBest ? (
           <>
@@ -59,22 +59,22 @@ const Product = ({
         )}
       </TagWrapper>
     )}
-    <Content whichPage={whichPage}>
+    <Content $whichPage={$whichPage}>
       <TitleWrapper>
-        <Title whichPage={whichPage}>{productName}</Title>
-        {whichPage === 'home' && typeof rating === 'number' && (
+        <Title $whichPage={$whichPage}>{productName}</Title>
+        {$whichPage === 'home' && typeof rating === 'number' && (
           <RatingWrapper>
-            <Rating whichPage={whichPage}>{rating}</Rating>
+            <Rating $whichPage={$whichPage}>{rating}</Rating>
             <StarIcon />
           </RatingWrapper>
         )}
       </TitleWrapper>
-      <Description whichPage={whichPage}>{productDescription}</Description>
+      <Description $whichPage={$whichPage}>{productDescription}</Description>
       <Button
         onClick={onClick}
-        text={buttonText}
+        $text={buttonText}
         to={restaurantId ? `/profile/${restaurantId}` : '/profile'}
-        whichPage={whichPage}
+        $whichPage={$whichPage}
       ></Button>
     </Content>
   </ProductWrapper>

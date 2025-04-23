@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { ButtonStyle } from './styles';
 
 export type Props = {
-  whichPage: 'home' | 'profile';
-  text?: string;
+  $whichPage: 'home' | 'profile';
+  $text?: string;
   to?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
@@ -12,8 +12,8 @@ export type Props = {
 };
 
 const Button = ({
-  text,
-  whichPage,
+  $text,
+  $whichPage,
   to = '#',
   onClick,
   type = 'button',
@@ -25,11 +25,11 @@ const Button = ({
       <ButtonStyle
         as={Link}
         to={to}
-        whichPage={whichPage}
-        text={text}
+        $whichPage={$whichPage}
+        $text={$text}
         onClick={onClick}
       >
-        {text}
+        {$text}
       </ButtonStyle>
     );
   }
@@ -39,11 +39,11 @@ const Button = ({
       as="button"
       type={type}
       onClick={onClick}
-      whichPage={whichPage}
-      text={text}
+      $whichPage={$whichPage}
+      $text={$text}
       disabled={disabled}
     >
-      {text}
+      {$text}
     </ButtonStyle>
   );
 };

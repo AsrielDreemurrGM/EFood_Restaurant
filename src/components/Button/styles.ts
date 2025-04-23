@@ -12,16 +12,16 @@ export const ButtonStyle = styled.button<Props>`
   font-weight: 700;
   border: none;
   cursor: pointer;
-  max-width: ${(props) => (props.whichPage === 'home' ? '82px' : '100%')};
+  max-width: ${(props) => (props.$whichPage === 'home' ? '82px' : '100%')};
 
   color: ${(props) =>
-    props.whichPage === 'home' ? colors.white : colors.warmPink};
+    props.$whichPage === 'home' ? colors.white : colors.warmPink};
 
   background-color: ${(props) =>
-    props.whichPage === 'home' ? colors.warmPink : colors.warmBeige};
+    props.$whichPage === 'home' ? colors.warmPink : colors.warmBeige};
 
   &:hover {
     background-color: ${(props) =>
-      props.whichPage === 'home' ? colors.salmonRed : colors.lightApricot};
+      props.$whichPage === 'home' ? colors.salmonRed : colors.lightApricot};
   }
 `;

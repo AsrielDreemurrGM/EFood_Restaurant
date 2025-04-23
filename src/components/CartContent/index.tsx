@@ -65,8 +65,8 @@ const CartComponent = () => {
         <span>{formatPrice(getTotalValue())}</span>
       </TotalPriceWrapper>
       <Button
-        whichPage="profile"
-        text="Continuar com a entrega"
+        $whichPage="profile"
+        $text="Continuar com a entrega"
         onClick={userIsPaying}
       />
     </div>

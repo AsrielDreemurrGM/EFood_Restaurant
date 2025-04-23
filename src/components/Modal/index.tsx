@@ -53,8 +53,8 @@ const Modal = ({ isVisible, onClose, product }: Props) => {
               onClose();
               addProductToCart();
             }}
-            text={`Adicionar ao carrinho - ${formatPrice(product?.preco)}`}
-            whichPage="profile"
+            $text={`Adicionar ao carrinho - ${formatPrice(product?.preco)}`}
+            $whichPage="profile"
           ></Button>
         </ModalWrapper>
       </ModalContent>

@@ -62,7 +62,7 @@ const Profile = () => {
         ) : (
           <ProductsList
             products={products}
-            whichPage="profile"
+            $whichPage="profile"
             onProductClick={(product: ProfileProducts | HomeProducts) =>
               openModal(product as ProfileProducts)
             }
