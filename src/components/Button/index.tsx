@@ -8,6 +8,7 @@ export type Props = {
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   asLink?: boolean;
+  disabled?: boolean;
 };
 
 const Button = ({
@@ -16,7 +17,8 @@ const Button = ({
   to = '#',
   onClick,
   type = 'button',
-  asLink = true
+  asLink = true,
+  disabled = false
 }: Props) => {
   if (asLink) {
     return (
@@ -39,6 +41,7 @@ const Button = ({
       onClick={onClick}
       whichPage={whichPage}
       text={text}
+      disabled={disabled}
     >
       {text}
     </ButtonStyle>

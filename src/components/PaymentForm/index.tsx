@@ -1,5 +1,10 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+import InputMask from 'react-input-mask-next';
 
 import Button from '../Button';
 
@@ -11,15 +16,15 @@ import {
   PurchaseConfirmation
 } from './styles';
 
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-
-import InputMask from 'react-input-mask-next';
+import { usePurchaseMutation } from '../../services/api';
+import { RootReducer } from '../../store';
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
   const [isPaying, setIsPaying] = useState(false);
-  const [finishedPayment, setFinishedPayment] = useState(false);
+
+  const [purchase, { data, isSuccess, isLoading }] = usePurchaseMutation();
+  const products = useSelector((state: RootReducer) => state.cart.products);
 
   const currentYear = new Date().getFullYear();
   const currentYearShort = String(currentYear).slice(-2);
@@ -130,14 +135,38 @@ const PaymentForm = () => {
       additionalDetails: ''
     },
     validationSchema: isPaying ? paymentValidation : deliveryValidation,
-    enableReinitialize: true,
-    onSubmit: () => {
-      console.log('Compra realizada com sucesso');
-      setFinishedPayment(true);
-
-      setTimeout(() => {
-        resetCart();
-      }, 15000);
+    onSubmit: async (values) => {
+      try {
+        purchase({
+          products: products.map((product) => ({
+            id: product.id,
+            price: product.preco
+          })),
+          delivery: {
+            receiver: values.receiver,
+            address: {
+              description: values.address,
+              city: values.city,
+              zipCode: values.postalCode,
+              number: Number(values.residenceNumber),
+              complement: values.additionalDetails
+            }
+          },
+          payment: {
+            card: {
+              name: values.cardOwner,
+              number: values.cardNumber,
+              code: Number(values.cardCode),
+              expires: {
+                month: Number(values.expiresMonth),
+                year: Number(values.expiresYear)
+              }
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Erro durante a compra:', error);
+      }
     }
   });
 
@@ -164,19 +193,27 @@ const PaymentForm = () => {
     }
   };
 
-  const resetCart = () => {
+  const resetCart = useCallback(() => {
     dispatch(clear());
     dispatch(close());
     dispatch(cancelPayment());
-    setFinishedPayment(false);
     setIsPaying(false);
-  };
+  }, [dispatch, setIsPaying]);
 
-  if (finishedPayment)
+  useEffect(() => {
+    if (isSuccess && data) {
+      const timer = setTimeout(() => {
+        resetCart();
+      }, 15000);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess, data, resetCart]);
+
+  if (isSuccess && data)
     return (
       <PurchaseConfirmation>
         <div>
-          <span>Pedido realizado - 123456</span>
+          <span>Pedido realizado - {data.orderId}</span>
         </div>
         <p>
           Estamos felizes em informar que seu pedido já está em processo de
@@ -290,9 +327,10 @@ const PaymentForm = () => {
           <div className="button-wrapper">
             <Button
               whichPage="profile"
-              text="Finalizar pagamento"
+              text={isLoading ? 'Processando...' : 'Finalizar pagamento'}
               type="submit"
               asLink={false}
+              disabled={isLoading}
             />
             <Button
               whichPage="profile"
