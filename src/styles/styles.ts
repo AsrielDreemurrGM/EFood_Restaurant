@@ -32,6 +32,7 @@ body {
     max-width: 1024px;
     width: 100%;
     margin: 0 auto;
+    display: grid;
 
     @media (max-width: ${breakpoints.desktop}) {
       max-width: 90%;

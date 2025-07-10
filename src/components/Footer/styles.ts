@@ -3,7 +3,7 @@ import { colors } from '../../styles/styles';
 
 export const Container = styled.div`
   padding: 40px 0;
-  display: block;
+  display: grid;
   background-color: ${colors.warmBeige};
   justify-items: center;
 `;
