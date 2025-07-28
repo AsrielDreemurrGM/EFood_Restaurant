@@ -1,69 +1,99 @@
 <div>
-  <h1>🍽️ Efood Restaurant 🍕</h1>
-  <h2>📝 About</h2>
+  <h1>🍽️ Efood Restaurant</h1>
   <p>
-    Efood is an online restaurant platform developed using React, TypeScript,
-    Redux Toolkit, Formik, and Styled Components. It allows users to browse
-    restaurants, view dishes, place orders, and simulate the checkout process
-    with validations. Data is fetched dynamically using RTK Query from a public
-    API.
+    Este README também está disponível em
+    <a href="./README.pt-br.md">Português</a>.
   </p>
-  <h2>📦 Dependencies</h2>
+  <p>
+    Efood is an online restaurant platform built with <strong>React</strong> and
+    <strong>TypeScript</strong>, offering users the ability to browse restaurants,
+    view dishes, manage a cart, and simulate a complete checkout process with form validation,
+    input masks, animations, and accessibility enhancements. Data is dynamically fetched using
+    <strong>RTK Query</strong> from an external public API.
+  </p>
+  <h2>📌 Project Highlights</h2>
   <ul>
-    <li><strong>React</strong>: ^18.2.0</li>
-    <li><strong>TypeScript</strong>: ^4.9.5</li>
-    <li><strong>Redux Toolkit & React Redux</strong>: for state management and API integration</li>
-    <li><strong>React Router DOM</strong>: ^7.2.0</li>
-    <li><strong>Styled Components</strong>: ^6.1.15</li>
-    <li><strong>Formik & Yup</strong>: for form handling and validation</li>
-    <li><strong>React Input Mask Next</strong>: for masked input formatting</li>
-    <li><strong>@lottiefiles/react-lottie-player & lottie-react</strong>: for loading animations</li>
-    <li><strong>ESLint & Prettier</strong>: for code linting and formatting</li>
+    <li>Dynamic restaurant and dish rendering using <strong>RTK Query</strong></li>
+    <li>Cart functionality powered by <strong>Redux Toolkit</strong></li>
+    <li>Multi-step checkout with <strong>Formik</strong> + <strong>Yup</strong> validation</li>
+    <li>Masked inputs for credit card and delivery fields using <strong>React Input Mask Next</strong></li>
+    <li>Loading animations using <strong>Lottie</strong></li>
+    <li>Accessible components with semantic HTML, ARIA attributes, and hidden labels</li>
+    <li>Responsive mobile-first design and smooth scrolling</li>
   </ul>
-
-  <h2>⚙️ Scripts</h2>
+  <h2>🚀 Live Demo</h2>
+  <p>
+    Try the deployed app:<br>
+    <a href="https://e-food-restaurant.vercel.app" target="_blank">https://e-food-restaurant.vercel.app</a>
+  </p>
+  <h2>📂 Folder Structure</h2>
+  <pre><code>
+src/
+├── components/        # Reusable UI components
+├── containers/        # Cart, forms, and main sections
+├── pages/             # Route-level views (Home, Profile)
+├── services/          # API slices and RTK Query config
+├── styles/            # Global styles and themes
+├── types/             # TypeScript global types
+├── utils/             # Input masks and helper functions
+└── App.tsx            # Main app entry
+  </code></pre>
+  <h2>📦 Tech Stack</h2>
   <ul>
-    <li><strong>start</strong>: Starts the development server</li>
-    <li><strong>build</strong>: Builds the project for production</li>
-    <li><strong>test</strong>: Runs tests</li>
+    <li><strong>React</strong> ^18.2</li>
+    <li><strong>TypeScript</strong> ^4.9</li>
+    <li><strong>Redux Toolkit</strong> & <strong>React Redux</strong></li>
+    <li><strong>RTK Query</strong> for API integration</li>
+    <li><strong>React Router DOM</strong> ^7.2</li>
+    <li><strong>Formik</strong> + <strong>Yup</strong> for forms</li>
+    <li><strong>React Input Mask Next</strong></li>
+    <li><strong>Styled Components</strong> ^6.1</li>
+    <li><strong>Lottie React</strong> & <strong>@lottiefiles/react-lottie-player</strong></li>
+    <li><strong>ESLint</strong>, <strong>Prettier</strong> for formatting</li>
   </ul>
-
-  <h2>🌐 API</h2>
-  <p>Data is fetched from:</p>
-  <pre>https://fake-api-tau.vercel.app/api/efood/</pre>
-
-  <h2>🚀 Features</h2>
-  <ul>
-    <li>Dynamic restaurant and dish rendering from API</li>
-    <li>Routing between home and restaurant profile pages</li>
-    <li>Cart system using Redux Toolkit</li>
-    <li>Checkout process with detailed delivery and payment forms</li>
-    <li>Form validations using Yup + Formik</li>
-    <li>Input masks for sensitive fields (credit card, delivery info, etc.)</li>
-    <li>Loading animations using Lottie</li>
-    <li>Accessible UI with semantic roles, ARIA attributes and hidden elements</li>
-    <li>Smooth scroll and mobile responsiveness</li>
-  </ul>
-
-  <h2>💻 How to Run</h2>
+  <h2>🧪 How to Run the Project</h2>
   <ol>
     <li>
-      <strong>Clone the repository</strong>
-      <pre>git clone https://github.com/AsrielDreemurrGM/EFood_Restaurant/</pre>
+      <strong>Clone the repository</strong>:
+      <pre><code>git clone https://github.com/AsrielDreemurrGM/EFood_Restaurant</code></pre>
     </li>
     <li>
-      <strong>Navigate to the project folder</strong>
-      <pre>cd EFood_Restaurant</pre>
+      <strong>Navigate to the folder</strong>:
+      <pre><code>cd EFood_Restaurant</code></pre>
     </li>
     <li>
-      <strong>Install dependencies</strong>
-      <pre>npm install</pre>
+      <strong>Install dependencies</strong>:
+      <pre><code>npm install</code></pre>
+      or
+      <pre><code>yarn install</code></pre>
     </li>
     <li>
-      <strong>Start the project</strong>
-      <pre>npm start</pre>
+      <strong>Start the development server</strong>:
+      <pre><code>npm start</code></pre>
+      or
+      <pre><code>yarn start</code></pre>
     </li>
   </ol>
+  <h2>🔧 Scripts</h2>
+  <ul>
+    <li><strong>start</strong> – Runs the project in development mode</li>
+    <li><strong>build</strong> – Builds the app for production</li>
+    <li><strong>test</strong> – Runs tests</li>
+  </ul>
+  <h2>🌐 API Endpoint</h2>
+  <p>
+    All data is fetched from:
+    <pre><code>https://fake-api-tau.vercel.app/api/efood/</code></pre>
+  </p>
+  <h2>📌 Commit Highlights</h2>
+  <ul>
+    <li><strong>Accessibility</strong>: ARIA roles, semantic structure, screen reader support</li>
+    <li><strong>Checkout</strong>: Formik + Yup with input masks and validation feedback</li>
+    <li><strong>Cart</strong>: Full cart management with delayed reset and success modal</li>
+    <li><strong>Animation</strong>: Integrated Lottie animations for loading feedback</li>
+    <li><strong>Routing</strong>: Dynamic routing for restaurants and dishes</li>
+    <li><strong>Performance</strong>: Fixed console warnings and streamlined types</li>
+  </ul>
   <h2>📜 License</h2>
-  <p>This project is licensed under the MIT License.</p>
+  <p>This project is licensed under the <strong>MIT License</strong>.</p>
 </div>
