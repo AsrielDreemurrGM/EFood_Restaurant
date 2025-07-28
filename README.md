@@ -21,10 +21,14 @@
     <li>Accessible components with semantic HTML, ARIA attributes, and hidden labels</li>
     <li>Responsive mobile-first design and smooth scrolling</li>
   </ul>
-  <h2>🚀 Live Demo</h2>
+  <h2>🚀 Demo</h2>
   <p>
-    Try the deployed app:<br>
+    Live site:<br>
     <a href="https://e-food-restaurant.vercel.app" target="_blank">https://e-food-restaurant.vercel.app</a>
+  </p>
+  <p>
+    Video walkthrough (silent):<br>
+    <a href="https://www.youtube.com/watch?v=dnK2-_QMqaU" target="_blank">Watch the full demo on YouTube</a>
   </p>
   <h2>📂 Folder Structure</h2>
   <pre><code>
