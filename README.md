@@ -23,10 +23,6 @@
   </ul>
   <h2>🚀 Demo</h2>
   <p>
-    Live site:<br>
-    <a href="https://e-food-restaurant.vercel.app" target="_blank">https://e-food-restaurant.vercel.app</a>
-  </p>
-  <p>
     Video walkthrough (silent):<br>
     <a href="https://www.youtube.com/watch?v=dnK2-_QMqaU" target="_blank">Watch the full demo on YouTube</a>
   </p>

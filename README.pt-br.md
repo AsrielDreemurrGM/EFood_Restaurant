@@ -22,10 +22,6 @@
   </ul>
   <h2>🚀 Demonstração</h2>
   <p>
-    Acesse o projeto implantado:<br>
-    <a href="https://e-food-restaurant.vercel.app" target="_blank">https://e-food-restaurant.vercel.app</a>
-  </p>
-  <p>
     Demonstração em vídeo (sem som):<br>
     <a href="https://www.youtube.com/watch?v=dnK2-_QMqaU" target="_blank">Assista à demonstração completa no YouTube</a>
   </p>
