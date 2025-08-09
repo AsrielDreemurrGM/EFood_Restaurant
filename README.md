@@ -23,6 +23,10 @@
   </ul>
   <h2>🚀 Demo</h2>
   <p>
+    Live Vercel hosting:<br>
+    <a href="https://e-food-restaurant.vercel.app" target="_blank">https://e-food-restaurant.vercel.app</a>
+  </p>
+  <p>
     Video walkthrough (silent):<br>
     <a href="https://www.youtube.com/watch?v=dnK2-_QMqaU" target="_blank">Watch the full demo on YouTube</a>
   </p>
@@ -83,7 +87,7 @@ src/
   <h2>🌐 API Endpoint</h2>
   <p>
     All data is fetched from:
-    <pre><code>https://fake-api-tau.vercel.app/api/efood/</code></pre>
+    <pre><code>https://ebac-fake-api.vercel.app/api/efood/</code></pre>
   </p>
   <h2>📌 Commit Highlights</h2>
   <ul>

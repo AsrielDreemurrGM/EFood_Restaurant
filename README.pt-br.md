@@ -22,6 +22,10 @@
   </ul>
   <h2>🚀 Demonstração</h2>
   <p>
+    Visite o hosteamento do projeto na Vercel:<br>
+    <a href="https://e-food-restaurant.vercel.app" target="_blank">https://e-food-restaurant.vercel.app</a>
+  </p>
+  <p>
     Demonstração em vídeo (sem som):<br>
     <a href="https://www.youtube.com/watch?v=dnK2-_QMqaU" target="_blank">Assista à demonstração completa no YouTube</a>
   </p>
@@ -82,7 +86,7 @@ src/
   <h2>🌐 Endpoint da API</h2>
   <p>
     Os dados são fornecidos pela seguinte API:
-    <pre><code>https://fake-api-tau.vercel.app/api/efood/</code></pre>
+    <pre><code>https://ebac-fake-api.vercel.app/api/efood/</code></pre>
   </p>
   <h2>📌 Destaques dos Commits</h2>
   <ul>

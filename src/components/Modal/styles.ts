@@ -26,11 +26,11 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  display: flex;
+  display: flex !important;
   z-index: 1;
   position: relative;
   width: 100%;
-  max-height: 344pxpx;
+  max-height: 344px;
   padding: 32px;
   background-color: ${colors.warmPink};
   color: ${colors.white};
@@ -51,7 +51,6 @@ export const ModalWrapper = styled.div`
   display: block;
 
   a {
-    max-width: 216px;
     width: 100%;
   }
 `;

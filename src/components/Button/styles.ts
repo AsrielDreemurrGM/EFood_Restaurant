@@ -12,7 +12,7 @@ export const ButtonStyle = styled.button<Props>`
   font-weight: 700;
   border: none;
   cursor: pointer;
-  max-width: ${(props) => (props.$whichPage === 'home' ? '82px' : '100%')};
+  max-width: ${(props) => (props.$whichPage === 'home' ? '90px' : '100%')};
 
   color: ${(props) =>
     props.$whichPage === 'home' ? colors.white : colors.warmPink};
