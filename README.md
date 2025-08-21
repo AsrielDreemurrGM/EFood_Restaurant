@@ -9,11 +9,12 @@
     <strong>TypeScript</strong>, offering users the ability to browse restaurants,
     view dishes, manage a cart, and simulate a complete checkout process with form validation,
     input masks, animations, and accessibility enhancements. Data is dynamically fetched using
-    <strong>RTK Query</strong> from an external public API.
+    <strong>RTK Query</strong> from a <strong>custom API maintained and run by me</strong>, ensuring up-to-date
+    restaurant information and images.
   </p>
   <h2>📌 Project Highlights</h2>
   <ul>
-    <li>Dynamic restaurant and dish rendering using <strong>RTK Query</strong></li>
+    <li>Dynamic restaurant and dish rendering using <strong>RTK Query</strong> from my API</li>
     <li>Cart functionality powered by <strong>Redux Toolkit</strong></li>
     <li>Multi-step checkout with <strong>Formik</strong> + <strong>Yup</strong> validation</li>
     <li>Masked inputs for credit card and delivery fields using <strong>React Input Mask Next</strong></li>
@@ -86,8 +87,8 @@ src/
   </ul>
   <h2>🌐 API Endpoint</h2>
   <p>
-    All data is fetched from:
-    <pre><code>https://ebac-fake-api.vercel.app/api/efood/</code></pre>
+    All data is fetched from <strong>my custom API</strong>:
+    <pre><code>https://e-food-api.vercel.app/</code></pre>
   </p>
   <h2>📌 Commit Highlights</h2>
   <ul>

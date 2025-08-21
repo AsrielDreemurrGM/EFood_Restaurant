@@ -34,15 +34,15 @@ export type CheckoutPayload = {
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://ebac-fake-api.vercel.app/api/efood/'
+    baseUrl: 'https://e-food-api.vercel.app/'
   }),
   endpoints: (builder) => ({
     getRestaurants: builder.query<HomeProducts[], void>({
-      query: () => 'restaurantes'
+      query: () => 'jsons/restaurants.json'
     }),
     purchase: builder.mutation<CheckoutResponse, CheckoutPayload>({
       query: (body) => ({
-        url: 'checkout',
+        url: 'api/checkout',
         method: 'POST',
         body
       })
